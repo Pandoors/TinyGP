@@ -3,7 +3,6 @@ grammar Bobaro;
 INT_VAL: [1-9][0-9]*;
 STRING_VAL: '"' ('\\' ["\\] | ~["\\\r\n])* '"' ;
 BOOL: 'boolean';
-NULL: 'null'; //todo NOWE
 COMMENT: '//'~[\r\n]*;
 OR: '||';
 AND: '&&';
