@@ -61,7 +61,7 @@ assignment: INT IDENTIFIER EQUAL (math_expr | readOrIn)
 | STRING IDENTIFIER EQUAL (STRING_VAL | readOrIn )
 | BOOL IDENTIFIER EQUAL (bool_val | readOrIn );
 
-if_statement: IF logic_condition PARENT_L instruction_general PARENT_R;
+if_statement: IF logic_condition PARENT_L  (instruction | COMMENT )*  PARENT_R;
 
 logic_condition: BRACKET_L logic_statement (logic_operator logic_statement)* BRACKET_R;
 
@@ -78,14 +78,13 @@ comparator: EQUAL EQUAL
 | GREATER_EQUAL
 | LESS_EQUAL;
 
-for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L instruction_general PARENT_R;
+for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R;
 
-instruction: assignment SEMICOLON
-| modification SEMICOLON
+instruction: modification SEMICOLON
 | if_statement
 | for_loop
 | writeOrOut;
 
-instruction_general: (instruction | COMMENT)*;
+instruction_general: (instruction | COMMENT | assignment SEMICOLON)*;
 
 modification: IDENTIFIER EQUAL (math_expr | readOrIn);
