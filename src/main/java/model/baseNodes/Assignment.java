@@ -31,7 +31,7 @@ public class Assignment extends Node {
 //            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
 //        if (this.treeRootNode.getMaxDepth() - this.depth == 4) randomInt = random.nextInt(3);
         int index = this.treeRootNode.getVariables().size() + 1;
-        String newVar = "x".concat("_").concat(String.valueOf(index));
+        String newVar = "x".concat(String.valueOf(index));
         switch (randomInt) {
             case 0:
                 this.addChild(new TokenNode(this, "INT", false, "int", treeRootNode));
