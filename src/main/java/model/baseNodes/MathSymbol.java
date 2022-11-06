@@ -8,8 +8,11 @@ import java.util.Random;
 
 public class MathSymbol extends Node {
 
+
     public MathSymbol(Node parentNode, String name, Boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
+        this.setMinDepthRequired(1);
+        this.setDepth(this.parentNode.getDepth() + 1);
 
         this.generateRandomChildren();
     }
@@ -22,6 +25,8 @@ public class MathSymbol extends Node {
 
     @Override
     public void generateRandomChildren() {
+        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
+            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
         Random random = new Random();
         int randomInt = random.nextInt(4);
         switch (randomInt) {
@@ -42,10 +47,6 @@ public class MathSymbol extends Node {
 
     @Override
     public void print() {
-//        todo boro co to? xd
-//        System.out.println("|");
-//        this.getChildren().get(0).print();
-//
         for (Node child : this.getChildren()) {
             child.print();
         }

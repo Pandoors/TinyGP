@@ -17,6 +17,8 @@ public class Program extends Node {
         super();
         this.variables = new ArrayList<>();
 
+        this.setDepth(0);
+        this.setMaxDepth(100);
         // XDD 5 gestosc kodu
         this.treeRootNode = this;
 

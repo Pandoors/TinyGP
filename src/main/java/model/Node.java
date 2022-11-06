@@ -38,8 +38,6 @@ public abstract class Node {
         this.treeRootNode = program;
     }
 
-
-
     protected abstract void addChild(Node child);
     public abstract void generateRandomChildren();
     public abstract void print();
