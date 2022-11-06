@@ -32,13 +32,13 @@ ELSE: 'else';
 FOR: 'for';
 SEMICOLON: ';';
 COMMA: ',';
+READ_OR_IN: 'sysIn()';
 IDENTIFIER: [a-zA-Z][a-zA-Z0-9]*;
 WS   : [ \t\r\n]+ -> skip;
 
 
 program: instruction_general | EOF;
 
-readOrIn: 'sysIn()';
 
 writeOrOut: 'printl(' STRING_VAL ')'  SEMICOLON;
 
@@ -57,9 +57,9 @@ math_expr: math_expr math_symbol math_expr
 | BRACKET_L math_expr BRACKET_R
 | num_val;
 
-assignment: INT IDENTIFIER EQUAL (math_expr | readOrIn)
-| STRING IDENTIFIER EQUAL (STRING_VAL | readOrIn )
-| BOOL IDENTIFIER EQUAL (bool_val | readOrIn );
+assignment: INT IDENTIFIER EQUAL (math_expr | READ_OR_IN)
+| STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
+| BOOL IDENTIFIER EQUAL (bool_val | READ_OR_IN );
 
 if_statement: IF logic_condition PARENT_L  (instruction | COMMENT )*  PARENT_R;
 
@@ -87,4 +87,4 @@ instruction: modification SEMICOLON
 
 instruction_general: (instruction | COMMENT | assignment SEMICOLON)*;
 
-modification: IDENTIFIER EQUAL (math_expr | readOrIn);
+modification: IDENTIFIER EQUAL (math_expr | READ_OR_IN);
