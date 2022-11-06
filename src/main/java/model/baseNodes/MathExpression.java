@@ -1,14 +1,17 @@
 package model.baseNodes;
 
 import model.Node;
+import model.Program;
 import model.tokenNode.TokenNode;
 
 import java.util.Random;
 
 public class MathExpression extends Node {
 
-    public MathExpression(Node parentNode, String name, boolean isCrossable) {
-        super(parentNode, name, isCrossable);
+    public MathExpression(Node parentNode, String name, boolean isCrossable, Program program) {
+        super(parentNode, name, isCrossable, program);
+
+        this.generateRandomChildren();
     }
 
     @Override
@@ -22,17 +25,17 @@ public class MathExpression extends Node {
         int randomInt = random.nextInt(3);
         switch (randomInt) {
             case 0:
-                this.addChild( new MathExpression(this, "MATH_EXPRESSION", true));
-                this.addChild( new MathSymbol(this, "MATH_SYMBOL", true));
-                this.addChild( new MathExpression(this, "MATH_EXPRESSION", true));
+                this.addChild( new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
+                this.addChild( new MathSymbol(this, "MATH_SYMBOL", true, treeRootNode));
+                this.addChild( new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
                 break;
             case 1:
-                this.addChild(new TokenNode(this, "BRACKET_L", false, "("));
-                this.addChild(new MathExpression(this, "MATH_EXPRESSION", true));
-                this.addChild(new TokenNode(this, "BRACKET_R", false, ")"));
+                this.addChild(new TokenNode(this, "BRACKET_L", false, "(", treeRootNode));
+                this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
+                this.addChild(new TokenNode(this, "BRACKET_R", false, ")", treeRootNode));
                 break;
             case 2:
-                // TODO: add num_val
+                this.addChild(new NumVal(this, "NUM_VAL", false, treeRootNode));
                 break;
         }
     }

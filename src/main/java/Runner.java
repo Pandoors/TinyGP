@@ -1,5 +1,6 @@
 import definition.TinyGp;
 import definition.TinyGpExtended;
+import model.Program;
 import utils.Evaluator;
 import utils.ParserXLSX;
 
@@ -16,6 +17,7 @@ public class Runner {
             log = args[0];
         }
 
+        Program program = new Program();
 
 
     }
