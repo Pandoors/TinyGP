@@ -8,4 +8,8 @@ public class Program extends Node {
         super(parentNode, name, isCrossable);
     }
 
+    @Override
+    protected void addChild(Node child) {
+
+    }
 }

@@ -14,6 +14,9 @@ public abstract class Node {
     private String name;
     private List<Node> children;
     private boolean isCrossable;
+    private int depth;
+    private int maxDepth;
+    private int minDepthRequired;
 
     public static final Random RANDOM = new Random();
 
@@ -29,5 +32,7 @@ public abstract class Node {
         this.name = name;
         this.children = new ArrayList<>();
     }
+
+    protected abstract void addChild(Node child);
 
 }
