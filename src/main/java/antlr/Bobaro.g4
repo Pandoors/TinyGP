@@ -67,7 +67,7 @@ logic_condition: BRACKET_L logic_statement (logic_operator logic_statement)* BRA
 
 comparison: num_val comparator num_val;
 
-logic_statement: comparison | bool_val;
+logic_statement: comparison | bool_val; //1 max 2 mindeph(bool) 1 minDepth(comparison) = 2
 
 logic_operator: OR | AND;
 

@@ -2,6 +2,7 @@ package model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Random;
 
 @Getter
 @Setter
+@ToString
 public abstract class Node {
     private Node parentNode;
     private String name;
@@ -34,5 +36,7 @@ public abstract class Node {
     }
 
     protected abstract void addChild(Node child);
+    public abstract void generateRandomChildren();
+    public abstract void print();
 
 }

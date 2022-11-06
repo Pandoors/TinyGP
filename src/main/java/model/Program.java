@@ -12,4 +12,9 @@ public class Program extends Node {
     protected void addChild(Node child) {
 
     }
+
+    @Override
+    public void generateRandomChildren() {
+
+    }
 }
