@@ -1,5 +1,6 @@
 package model;
 
+import model.baseNodes.Assignment;
 import model.baseNodes.MathExpression;
 import model.baseNodes.MathSymbol;
 import model.baseNodes.NumVal;
@@ -33,7 +34,8 @@ public class Program extends Node {
     @Override
     public void generateRandomChildren() {
         // todo narazie testowo daje tutaj mathExpression
-        this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
+//        this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
+        this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
         this.print();
     }
 
@@ -48,4 +50,10 @@ public class Program extends Node {
     public List<TokenNode> getVariables() {
         return variables;
     }
+
+
+    public void addVariable(TokenNode var){
+        this.variables.add(var);
+    }
+
 }
