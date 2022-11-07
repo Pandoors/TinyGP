@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class MathSymbol extends Node {
 
-
     public MathSymbol(Node parentNode, String name, Boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1);
