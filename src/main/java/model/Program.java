@@ -1,9 +1,6 @@
 package model;
 
-import model.baseNodes.Assignment;
-import model.baseNodes.MathExpression;
-import model.baseNodes.MathSymbol;
-import model.baseNodes.NumVal;
+import model.baseNodes.*;
 import model.tokenNode.TokenNode;
 
 import java.util.ArrayList;
@@ -35,7 +32,13 @@ public class Program extends Node {
     public void generateRandomChildren() {
         // todo narazie testowo daje tutaj mathExpression
 //        this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
-        this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
+//        this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
+
+//          todo koniecznie jesli to jest empty nie przechodzimy do modification! tu jest ten check
+//        if (randomInt_1 == 1 && this.treeRootNode.getVariables().isEmpty()) {
+//            randomInt_1 = 0;
+//        }>>>>
+        this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode));
         this.print();
     }
 
