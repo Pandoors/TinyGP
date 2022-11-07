@@ -7,12 +7,15 @@ import model.tokenNode.TokenNode;
 import java.util.Random;
 
 public class Modification extends Node {
+    private boolean fromForLoop;
 
-    public Modification(Node parentNode, String name, boolean isCrossable, Program program) {
+
+    public Modification(Node parentNode, String name, boolean isCrossable, Program program, boolean fromForLoop) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1); //todo @Boro tyle tu?
         this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
+        this.fromForLoop = fromForLoop;
     }
 
     @Override
@@ -33,16 +36,17 @@ public class Modification extends Node {
             throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth - 1 < 1");
         if(this.treeRootNode.getMaxDepth() - this.depth == 2) randomInt = 1;
 
+
         switch (randomInt) {
             case 0:
                 int randomInt_2 = random.nextInt(this.treeRootNode.getVariables().size());// TODO: to rzuca wyjątek, chyba nie może być w random.nextInt(0)
-                this.addChild(new TokenNode(this, "IDENTIFIER", false, this.treeRootNode.getVariables().get(randomInt_2).getToken(), treeRootNode));
+                this.addChild(new TokenNode(this, "IDENTIFIER", false,fromForLoop ? this.treeRootNode.getVariables().get(treeRootNode.getVariables().size()-1).getToken() : this.treeRootNode.getVariables().get(randomInt_2).getToken(), treeRootNode));
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
                 this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
                 break;
             case 1:
                 int randomInt_3 = random.nextInt(this.treeRootNode.getVariables().size()); //TODO: to rzuca wyjątek, chyba nie może być w random.nextInt(0)
-                this.addChild(new TokenNode(this, "IDENTIFIER", false, this.treeRootNode.getVariables().get(randomInt_3).getToken(), treeRootNode));
+                this.addChild(new TokenNode(this, "IDENTIFIER", false,fromForLoop ? this.treeRootNode.getVariables().get(treeRootNode.getVariables().size()-1).getToken() : this.treeRootNode.getVariables().get(randomInt_3).getToken(), treeRootNode));
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
                 this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
                 break;

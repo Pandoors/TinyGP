@@ -32,10 +32,6 @@ public class NumVal extends Node {
         }
 
         switch (randomInt_2) {
-//            todo szczerze nie wiem co tym chcialem osiagnac xd
-//            case 0:
-//                this.addChild(new TokenNode(this, "ADD_", false, "+", treeRootNode));
-//                break;
             case 1:
                 this.addChild(new TokenNode(this, "SUBTRACT_", false, "-", treeRootNode));
                 break;
@@ -58,6 +54,5 @@ public class NumVal extends Node {
         for(Node child : this.getChildren()) {
             child.print();
         }
-
     }
 }

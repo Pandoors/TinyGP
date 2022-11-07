@@ -30,21 +30,20 @@ public class Program extends Node {
 
     @Override
     public void generateRandomChildren() {
-        // todo narazie testowo daje tutaj mathExpression
-//        this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
-//        this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
-
-//          todo koniecznie jesli to jest empty nie przechodzimy do modification! tu jest ten check
-//        if (randomInt_1 == 1 && this.treeRootNode.getVariables().isEmpty()) {
-//            randomInt_1 = 0;
-//        }>>>>
-        this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode));
+        //          todo koniecznie jesli to jest empty nie przechodzimy do modification! tu jest ten check
+//todo boro tutaj jakis depth ? moze do while-a proponuje dodac warunek z glebokoscia oprocz tego random inta
+        Random random = new Random();
+        int randomInt = random.nextInt(2);
+        while(randomInt != 1) { // todo to jest gwiazdka wieeec w sumie to moze byc pusty program
+            this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode));
+            randomInt = random.nextInt(2);
+        }
         this.print();
     }
 
     @Override
     public void print() {
-        for(Node child : this.getChildren()) {
+        for (Node child : this.getChildren()) {
             child.print();
         }
     }
@@ -55,7 +54,7 @@ public class Program extends Node {
     }
 
 
-    public void addVariable(TokenNode var){
+    public void addVariable(TokenNode var) {
         this.variables.add(var);
     }
 
