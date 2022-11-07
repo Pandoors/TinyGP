@@ -10,7 +10,7 @@ public class BoolVal extends Node {
 
     public BoolVal(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
-        this.setMinDepthRequired(1); //todo @Boro tyle tu?
+        this.setMinDepthRequired(1); //todo @Boro tyle tu? YEP
         this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
@@ -22,8 +22,8 @@ public class BoolVal extends Node {
 
     @Override
     public void generateRandomChildren() {
-//        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
-//            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
+        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
+            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
         Random random = new Random();
         int randomInt = random.nextInt(2);
         switch (randomInt) {

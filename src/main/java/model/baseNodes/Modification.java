@@ -10,7 +10,7 @@ public class Modification extends Node {
 
     public Modification(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
-        this.setMinDepthRequired(4); //todo @Boro tyle tu?
+        this.setMinDepthRequired(1); //todo @Boro tyle tu?
         this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
@@ -21,24 +21,30 @@ public class Modification extends Node {
     }
 
 
-//  modification: IDENTIFIER EQUAL (math_expr | READ_OR_IN);
+//  modification: IDENTIFIER EQUAL (math_expr | READ_OR_IN); minDepthRequired = 1
     @Override
     public void generateRandomChildren() {
         Random random = new Random();
+        if(this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
+            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
         int randomInt = random.nextInt(2);
+        // warunek na maxDepthRequired
+        if(this.treeRootNode.getMaxDepth() - this.depth < 2)
+            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth - 1 < 1");
+        if(this.treeRootNode.getMaxDepth() - this.depth == 2) randomInt = 1;
+
         switch (randomInt) {
             case 0:
-                int randomInt_2 = random.nextInt(this.treeRootNode.getVariables().size());
+                int randomInt_2 = random.nextInt(this.treeRootNode.getVariables().size());// TODO: to rzuca wyjątek, chyba nie może być w random.nextInt(0)
                 this.addChild(new TokenNode(this, "IDENTIFIER", false, this.treeRootNode.getVariables().get(randomInt_2).getToken(), treeRootNode));
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
                 this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
                 break;
             case 1:
-                int randomInt_3 = random.nextInt(this.treeRootNode.getVariables().size());
+                int randomInt_3 = random.nextInt(this.treeRootNode.getVariables().size()); //TODO: to rzuca wyjątek, chyba nie może być w random.nextInt(0)
                 this.addChild(new TokenNode(this, "IDENTIFIER", false, this.treeRootNode.getVariables().get(randomInt_3).getToken(), treeRootNode));
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
                 this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-
                 break;
         }
     }
