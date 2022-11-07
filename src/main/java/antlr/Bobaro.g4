@@ -37,7 +37,7 @@ IDENTIFIER: [a-zA-Z][a-zA-Z0-9]*;
 WS   : [ \t\r\n]+ -> skip;
 
 
-program: instruction_general | EOF;
+program: instruction_general;
 
 
 writeOrOut: 'printl(' STRING_VAL ')'  SEMICOLON;
