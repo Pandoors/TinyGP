@@ -75,9 +75,9 @@ public abstract class Node {
     }
 
     private void checKTheMinDepth(){
-        if(this.treeRootNode.getMaxDepth() - this.getDepth() < this.minDepthRequired){
-            System.out.println("ERROR: " + this.getClass().getName() +  " MAXDEPTH " + this.treeRootNode.getMaxDepth() + " DEPTH " + this.depth + "WITH PARENT: " + this.parentNode.getClass().getName() +  "\n");
-        }
+//        if(this.treeRootNode.getMaxDepth() - this.getDepth() < this.minDepthRequired){
+//            System.out.println("ERROR: " + this.getClass().getName() +  " MAXDEPTH " + this.treeRootNode.getMaxDepth() + " DEPTH " + this.depth + "WITH PARENT: " + this.parentNode.getClass().getName() +  "\n");
+//        }
     }
 
 }
