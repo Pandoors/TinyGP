@@ -10,7 +10,7 @@ public class ForLoop extends Node {
 
     public ForLoop(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
-        this.setMinDepthRequired(2);
+        this.setMinDepthRequired(3);
         this.generateRandomChildren();
     }
 
