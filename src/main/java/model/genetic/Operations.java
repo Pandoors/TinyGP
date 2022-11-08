@@ -21,5 +21,12 @@ public class Operations {
         return result;
     }
 
+    public static void serialize() {
+
+    }
+
+    public static void deserialize() {
+
+    }
 
 }
