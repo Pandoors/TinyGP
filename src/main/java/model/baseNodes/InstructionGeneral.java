@@ -22,32 +22,74 @@ public class InstructionGeneral extends Node {
 
 
     @Override
-    public void generateRandomChildren() {
+    public void generateRandomChildren() { // TODO:powinno to działać ale trzeba przerobić wygląd tej klasy, żeby była podobna do InstructionGeneral
         Random random = new Random();
         int randomInt = random.nextInt(4);
         // checking if we can add child
-        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
+        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired)
             throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
-        if (this.treeRootNode.getMaxDepth() - this.depth == 0)
-            randomInt = 1; // we have no choice if , we add NumVal , still - 1 is quite ugly
-        while(randomInt!=3) {
-            switch (randomInt) {
-                case 0:
-                    this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
-                    break;
-                case 1:
-                    this.addChild(new TokenNode(this, "COMMENT", false, "//test", treeRootNode));
-                    break;
-                case 2:
-                    this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
-                    this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
-                    break;
-                case 3:
-//                koniec programu
-                    break;
-            }
-            randomInt = random.nextInt(4);
 
+
+        switch (this.treeRootNode.getMaxDepth() - this.depth){
+            case 1:
+                // then  we go for just COMMENT
+                while(randomInt!=3) {
+                    switch (randomInt) {
+                        case 0:
+                            break;
+                        case 1:
+                            this.addChild(new TokenNode(this, "COMMENT", false, "//test", treeRootNode));
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                    }
+                    randomInt = random.nextInt(4);
+                }
+                break;
+
+
+            case 2:
+                // then we go just for COMMENT and assigment
+                while(randomInt!=3) {
+                    switch (randomInt) {
+                        case 0:
+                            break;
+                        case 1:
+                            this.addChild(new TokenNode(this, "COMMENT", false, "//test", treeRootNode));
+                            break;
+                        case 2:
+                            this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
+                            this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
+                            break;
+                        case 3:
+                            break;
+                    }
+                    randomInt = random.nextInt(4);
+                }
+                break;
+
+
+            default: // then we go for all
+                while(randomInt!=3) {
+                    switch (randomInt) {
+                        case 0:
+                            this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
+                            break;
+                        case 1:
+                            this.addChild(new TokenNode(this, "COMMENT", false, "//test", treeRootNode));
+                            break;
+                        case 2:
+                            this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
+                            this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
+                            break;
+                        case 3:
+                            break;
+                    }
+                    randomInt = random.nextInt(4);
+                }
+                break;
         }
     }
 

@@ -30,66 +30,66 @@ public class Assignment extends Node {
 
         boolean goShort = this.treeRootNode.getMaxDepth() - this.depth == 1;
 
-            Random random = new Random();
-            switch (random.nextInt(3)) {
-                case 0: //1. INT IDENTIFIER EQUAL
-                    int index = this.treeRootNode.getVariables().size() + 1;
-                    String newVar = "x".concat(String.valueOf(index));
-                    this.addChild(new TokenNode(this, "INT", false, "int", treeRootNode));
-                    TokenNode tn = new TokenNode(this, "IDENTIFIER", false, newVar, treeRootNode);
-                    this.addChild(tn);
-                    this.treeRootNode.addVariable(tn);
-                    this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
-                    if(goShort)// a READ_OR_IN
-                        this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                    else // b (math_expr | READ_OR_IN)
-                        switch (random.nextInt(2)) {
-                            case 0:
-                                this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
-                                break;
-                            case 1:
-                                this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                                break;
-                        }
-
-                    break;
-                case 1://2. STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
-                    this.addChild(new TokenNode(this, "STRING", false, "string", treeRootNode));
-                    int index1 = this.treeRootNode.getVariables().size() + 1;
-                    String newVar1 = "x".concat(String.valueOf(index1));
-                    TokenNode tn1 = new TokenNode(this, "IDENTIFIER", false, newVar1, treeRootNode);
-                    this.addChild(tn1);
-                    this.treeRootNode.addVariable(tn1);
-                    this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
-                    Random random2 = new Random();
-                    switch (random2.nextInt(2)) {
+        Random random = new Random();
+        switch (random.nextInt(3)) {
+            case 0: //1. INT IDENTIFIER EQUAL
+                int index = this.treeRootNode.getVariables().size() + 1;
+                String newVar = "x".concat(String.valueOf(index));
+                this.addChild(new TokenNode(this, "INT", false, "int", treeRootNode));
+                TokenNode tn = new TokenNode(this, "IDENTIFIER", false, newVar, treeRootNode);
+                this.addChild(tn);
+                this.treeRootNode.addVariable(tn);
+                this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
+                if(goShort)// a READ_OR_IN
+                    this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
+                else // b (math_expr | READ_OR_IN)
+                    switch (random.nextInt(2)) {
                         case 0:
-                            this.addChild(new TokenNode(this, "STRING_VAL", false, "a", treeRootNode));
+                            this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
                             break;
                         case 1:
                             this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
                             break;
                     }
-                case 2://3. BOOL IDENTIFIER EQUAL
-                    this.addChild(new TokenNode(this, "BOOL", false, "bool", treeRootNode));
-                    int index2 = this.treeRootNode.getVariables().size() + 1;
-                    String newVar2 = "x".concat(String.valueOf(index2));
-                    TokenNode tn2 = new TokenNode(this, "IDENTIFIER", false, newVar2, treeRootNode);
-                    this.addChild(tn2);
-                    this.treeRootNode.addVariable(tn2);
-                    if(goShort)
+
+                break;
+            case 1://2. STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
+                this.addChild(new TokenNode(this, "STRING", false, "string", treeRootNode));
+                int index1 = this.treeRootNode.getVariables().size() + 1;
+                String newVar1 = "x".concat(String.valueOf(index1));
+                TokenNode tn1 = new TokenNode(this, "IDENTIFIER", false, newVar1, treeRootNode);
+                this.addChild(tn1);
+                this.treeRootNode.addVariable(tn1);
+                this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
+                Random random2 = new Random();
+                switch (random2.nextInt(2)) {
+                    case 0:
+                        this.addChild(new TokenNode(this, "STRING_VAL", false, "a", treeRootNode));
+                        break;
+                    case 1:
                         this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                    else //(bool_val | READ_OR_IN )
-                        switch (random.nextInt(2)) {
-                            case 0:
-                                this.addChild(new BoolVal(this, "BOOL_VAL", true, treeRootNode));
-                                break;
-                            case 1:
-                                this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                                break;
-                        }
-                    break;
-            }
+                        break;
+                }
+            case 2://3. BOOL IDENTIFIER EQUAL
+                this.addChild(new TokenNode(this, "BOOL", false, "bool", treeRootNode));
+                int index2 = this.treeRootNode.getVariables().size() + 1;
+                String newVar2 = "x".concat(String.valueOf(index2));
+                TokenNode tn2 = new TokenNode(this, "IDENTIFIER", false, newVar2, treeRootNode);
+                this.addChild(tn2);
+                this.treeRootNode.addVariable(tn2);
+                if(goShort) // a READ_OR_IN
+                    this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
+                else //b (bool_val | READ_OR_IN )
+                    switch (random.nextInt(2)) {
+                        case 0:
+                            this.addChild(new BoolVal(this, "BOOL_VAL", true, treeRootNode));
+                            break;
+                        case 1:
+                            this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
+                            break;
+                    }
+                break;
+        }
 
     }
 
@@ -167,13 +167,7 @@ public class Assignment extends Node {
 //                            this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
 //                            this.addChild(new BoolVal(this, "bool_val", true, treeRootNode));
 //                            break;
-//
-
-
-
-
-
-
+// Tą twoją funkcje zakomentowałęm bo jakby nie uwzględnia tej minimalnej głębokości
 
 
     @Override

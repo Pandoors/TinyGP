@@ -25,7 +25,8 @@ public class Comparator extends Node {
         Random random = new Random();
         int randomInt = random.nextInt(6);
         // checking if we can add child
-        if(this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1) throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
+        if(this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired)
+            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
         switch (randomInt) {
             case 0:
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));

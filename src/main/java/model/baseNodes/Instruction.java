@@ -22,33 +22,72 @@ public class Instruction extends Node {
 
     @Override
     public void generateRandomChildren() {
-        Random random = new Random();
-        int randomInt = random.nextInt(4);
-        if(randomInt == 0 && this.treeRootNode.getVariables().isEmpty()){
-            randomInt = random.nextInt(3) + 1;
-        }
-        // checking if we can add child
-        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
-            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
-        if (this.treeRootNode.getMaxDepth() - this.depth == 0)
-            randomInt = 2; // we have no choice if , we add NumVal , still - 1 is quite ugly
 
+        if(this.treeRootNode.getMaxDepth() - this.depth < this.minDepthRequired)
+            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired");
 
+        int depthChoice;
 
-        switch (randomInt) {
-            case 0:
-                this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode, false));
-                this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
-                break;
-            case 1:
-                this.addChild(new IfStatement(this, "IF_STATEMENT", true, treeRootNode));
-                break;
+        switch (this.treeRootNode.getMaxDepth() - this.depth){
             case 2:
-                this.addChild(new ForLoop(this, "FOR_LOOP", true, treeRootNode));
+                depthChoice = 1;
                 break;
             case 3:
-                this.addChild(new WriteOrOut(this, "WRITE_OR_OUT", true, treeRootNode));
+                depthChoice = 2;
+                break;
+            default:
+                depthChoice = 3;
+                break;
+        }
 
+        switch (depthChoice){
+            case 1:
+                this.addChildrenWithMaxDepth1();
+                break;
+            case 2: // we can choose between writeOrOut | modification SEMICOLON | ifStatement
+                this.addChildrenWithMaxDepth3();
+                break;
+            case 3:
+                this.addChildrenWithMaxDepth4();
+                break;
+        }
+    }
+
+
+    private void addChildrenWithMaxDepth1(){ // we can choose between writeOrOut | modification SEMICOLON
+        // we need to check if we have any variables
+        if(this.treeRootNode.getVariables().isEmpty()) // then we can just got for writeOrOut
+            this.addChild(new WriteOrOut(this, "WRITE_OR_OUT", true, this.treeRootNode));
+        else { //we can choose between writeOrOut | modification SEMICOLON
+            switch (new Random().nextInt(2)) {
+                case 0:
+                    this.addChild(new WriteOrOut(this, "WRITE_OR_OUT", true, this.treeRootNode));
+                    break;
+                case 1:
+                    this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode, false));
+                    this.addChild(new TokenNode(this, "SEMICOLON", false, ";", this.treeRootNode));
+                    break;
+            }
+        }
+    }
+    private void addChildrenWithMaxDepth3(){
+        switch (new Random().nextInt(2)) {
+            case 0:
+                this.addChildrenWithMaxDepth1();
+            case 1:
+                this.addChild(new ForLoop(this, "FOR_LOOP", true, treeRootNode));
+                break;
+        }
+    }
+    private void addChildrenWithMaxDepth4(){
+        switch (new Random().nextInt(3)) {
+            case 0:
+                this.addChildrenWithMaxDepth1();
+            case 1:
+                this.addChild(new ForLoop(this, "FOR_LOOP", true, treeRootNode));
+                break;
+            case 2:
+                this.addChild(new IfStatement(this, "IF_STATEMENT", true, treeRootNode));
                 break;
         }
     }

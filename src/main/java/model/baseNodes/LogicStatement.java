@@ -10,7 +10,7 @@ public class LogicStatement extends Node {
 
     public LogicStatement(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
-        this.setMinDepthRequired(2); //todo @Boro tyle tu?
+        this.setMinDepthRequired(2);
         this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
@@ -21,14 +21,23 @@ public class LogicStatement extends Node {
         this.getChildren().add(child);
 
     }
-//logic_statement: comparison | bool_val;
+
     @Override
-    public void generateRandomChildren() {
+    public void generateRandomChildren() {//logic_statement: comparison | bool_val;
         Random random = new Random();
         int randomInt = random.nextInt(2);
         // checking if we can add child
-        if(this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1) throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
-        switch (randomInt) {
+        if(this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1) throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1"); //TODO generalize this method
+
+        if(this.treeRootNode.getMaxDepth()-this.depth == 2)
+            this.addChildrenWithMaxDepth1();
+        else this.addChildrenWithMaxDepth2();
+    }
+    private void addChildrenWithMaxDepth1(){
+        this.addChild(new Comparison(this, "COMPARISON", false, treeRootNode));
+    }
+    private void addChildrenWithMaxDepth2(){
+        switch (new Random().nextInt(2)) {
             case 0:
                 this.addChild(new Comparison(this, "COMPARISON", false, treeRootNode));
                 break;

@@ -32,9 +32,8 @@ public class LogicCondition extends Node {
         Random random = new Random();
         int randomInt = random.nextInt(2);
 
-        while (randomInt != 0) { //todo @Boro ogarnij tutaj te glebokosci drzewa
+        while (randomInt != 0) { // to jest gitówa
             this.addChild(new LogicOperator(this, "LOGIC_OPERATOR", true, treeRootNode));
-
             this.addChild(new LogicStatement(this, "LOGIC_STATEMENT", true, treeRootNode));
 
             random = new Random();

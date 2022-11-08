@@ -37,11 +37,11 @@ IDENTIFIER: [a-zA-Z][a-zA-Z0-9]*;
 WS   : [ \t\r\n]+ -> skip;
 
 
-program: instruction_general; // minDepth: 2, @Bartek tu powinna być ta '|' ?
+program: instruction_general;
 
 writeOrOut: 'printl(' STRING_VAL ')'  SEMICOLON; // minDepth: 1
 
-math_symbol: ADD_ // minDepth=1
+math_symbol: ADD_ // minDepth = 1
 | SUBTRACT_
 | MULTIPLY
 | DIVIDE;
@@ -60,29 +60,35 @@ assignment: INT IDENTIFIER EQUAL (math_expr | READ_OR_IN) // minDepth: 1
 | STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
 | BOOL IDENTIFIER EQUAL (bool_val | READ_OR_IN );
 
-if_statement: IF logic_condition PARENT_L  (instruction | COMMENT )*  PARENT_R; // minDepth = 4
+if_statement: IF logic_condition PARENT_L  (instruction | COMMENT )*  PARENT_R; // minDepth = 4 s
 
 logic_condition: BRACKET_L logic_statement (logic_operator logic_statement)* BRACKET_R; // minDepth = 3
 
 comparison: num_val comparator num_val; //minDepth: 2
 
-logic_statement: comparison | bool_val; // minDepth: 2
+logic_statement: // minDepth: 2
+comparison //mD2
+| bool_val; //mD1
 
-logic_operator: OR | AND; //minDepth: 1
+logic_operator: //minDepth: 1
+OR //mD0
+| AND; //mD0
 
-comparator: EQUAL EQUAL //minDepth: 1
-| NOT_EQUAL
-| GREATER
-| LESS
-| GREATER_EQUAL
-| LESS_EQUAL;
+comparator: //minDepth: 1
+EQUAL EQUAL //mD0
+| NOT_EQUAL //mD0
+| GREATER //mD0
+| LESS //mD0
+| GREATER_EQUAL //mD0
+| LESS_EQUAL; //mD0
 
-for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R; // minDepth: 3
+for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R; // minDepth: 3 TODO: add depth
 
-instruction: modification SEMICOLON // minDepth: 2
-| if_statement
-| for_loop
-| writeOrOut;
+instruction: // minDepth:2
+modification SEMICOLON //mD1 + (checking If varialble is declared)
+| if_statement // mD4
+| for_loop  // mD3
+| writeOrOut; //mD1
 
 instruction_general: (instruction | COMMENT | assignment SEMICOLON)*; // minDepth: 1
 
