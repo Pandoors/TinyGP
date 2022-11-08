@@ -38,7 +38,7 @@ public class InstructionGeneral extends Node {
                         case 0:
                             break;
                         case 1:
-                            this.addChild(new TokenNode(this, "COMMENT", false, "//test", treeRootNode));
+                            this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
                             break;
                         case 2:
                             break;
@@ -57,11 +57,11 @@ public class InstructionGeneral extends Node {
                         case 0:
                             break;
                         case 1:
-                            this.addChild(new TokenNode(this, "COMMENT", false, "//test", treeRootNode));
+                            this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
                             break;
                         case 2:
-                            this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
-                            this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
+                            this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode, false));
+                            this.addChild(new TokenNode(this, "SEMICOLON", false, ";\n", treeRootNode));
                             break;
                         case 3:
                             break;
@@ -78,11 +78,11 @@ public class InstructionGeneral extends Node {
                             this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
                             break;
                         case 1:
-                            this.addChild(new TokenNode(this, "COMMENT", false, "//test", treeRootNode));
+                            this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
                             break;
                         case 2:
-                            this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
-                            this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
+                            this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode, false));
+                            this.addChild(new TokenNode(this, "SEMICOLON", false, ";\n", treeRootNode));
                             break;
                         case 3:
                             break;

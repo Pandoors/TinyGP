@@ -25,7 +25,7 @@ public class WriteOrOut extends Node {
         this.addChild(new TokenNode(this, "printl(", false, "printl(", treeRootNode));
         this.addChild(new TokenNode(this, "STRING_VAL", false, " \" test \" ", treeRootNode));
         this.addChild(new TokenNode(this, ")", false, ")", treeRootNode));
-        this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
+        this.addChild(new TokenNode(this, "SEMICOLON", false, ";\n", treeRootNode));
     }
 
     @Override

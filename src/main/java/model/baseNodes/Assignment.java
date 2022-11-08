@@ -8,11 +8,16 @@ import java.util.Random;
 
 public class Assignment extends Node {
 
-    public Assignment(Node parentNode, String name, boolean isCrossable, Program program) {
+    private boolean fromForLoop;
+
+    public Assignment(Node parentNode, String name, boolean isCrossable, Program program, boolean fromForLoop) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1);
         this.setDepth(this.parentNode.getDepth() + 1);
+        this.fromForLoop = fromForLoop;
         this.generateRandomChildren();
+
+
     }
 //assignment: INT IDENTIFIER EQUAL (math_expr [3] | readOrIn [0] )
 //| STRING IDENTIFIER EQUAL (STRING_VAL [4] | readOrIn [1] )
@@ -31,16 +36,17 @@ public class Assignment extends Node {
         boolean goShort = this.treeRootNode.getMaxDepth() - this.depth == 1;
 
         Random random = new Random();
-        switch (random.nextInt(3)) {
+        int randInt = fromForLoop? 0 : random.nextInt(3);
+        switch (randInt) {
             case 0: //1. INT IDENTIFIER EQUAL
                 int index = this.treeRootNode.getVariables().size() + 1;
                 String newVar = "x".concat(String.valueOf(index));
-                this.addChild(new TokenNode(this, "INT", false, "int", treeRootNode));
+                this.addChild(new TokenNode(this, "INT", false, "int ", treeRootNode));
                 TokenNode tn = new TokenNode(this, "IDENTIFIER", false, newVar, treeRootNode);
                 this.addChild(tn);
                 this.treeRootNode.addVariable(tn);
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
-                if(goShort)// a READ_OR_IN
+                if (goShort)// a READ_OR_IN
                     this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
                 else // b (math_expr | READ_OR_IN)
                     switch (random.nextInt(2)) {
@@ -54,7 +60,7 @@ public class Assignment extends Node {
 
                 break;
             case 1://2. STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
-                this.addChild(new TokenNode(this, "STRING", false, "string", treeRootNode));
+                this.addChild(new TokenNode(this, "STRING", false, "string ", treeRootNode));
                 int index1 = this.treeRootNode.getVariables().size() + 1;
                 String newVar1 = "x".concat(String.valueOf(index1));
                 TokenNode tn1 = new TokenNode(this, "IDENTIFIER", false, newVar1, treeRootNode);
@@ -71,13 +77,14 @@ public class Assignment extends Node {
                         break;
                 }
             case 2://3. BOOL IDENTIFIER EQUAL
-                this.addChild(new TokenNode(this, "BOOL", false, "bool", treeRootNode));
+                this.addChild(new TokenNode(this, "BOOL", false, "boolean ", treeRootNode));
                 int index2 = this.treeRootNode.getVariables().size() + 1;
                 String newVar2 = "x".concat(String.valueOf(index2));
                 TokenNode tn2 = new TokenNode(this, "IDENTIFIER", false, newVar2, treeRootNode);
                 this.addChild(tn2);
                 this.treeRootNode.addVariable(tn2);
-                if(goShort) // a READ_OR_IN
+                this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
+                if (goShort) // a READ_OR_IN
                     this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
                 else //b (bool_val | READ_OR_IN )
                     switch (random.nextInt(2)) {
@@ -100,10 +107,10 @@ public class Assignment extends Node {
 //                      -> BOOL IDENTIFIER EQUAL   -> bool_val
 //                                                 -> READ_OR_IN
 
-            // else we have production like
-            //1. INT IDENTIFIER EQUAL (math_expr | READ_OR_IN)
-            //2. STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
-            //3. BOOL IDENTIFIER EQUAL (bool_val | READ_OR_IN )
+    // else we have production like
+    //1. INT IDENTIFIER EQUAL (math_expr | READ_OR_IN)
+    //2. STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
+    //3. BOOL IDENTIFIER EQUAL (bool_val | READ_OR_IN )
 //             int index = this.treeRootNode.getVariables().size() + 1;
 //                    String newVar = "x".concat(String.valueOf(index));
 //                    switch (randomInt) {
@@ -169,6 +176,10 @@ public class Assignment extends Node {
 //                            break;
 // Tą twoją funkcje zakomentowałęm bo jakby nie uwzględnia tej minimalnej głębokości
 
+
+    public boolean isFromForLoop() {
+        return fromForLoop;
+    }
 
     @Override
     public void print() {

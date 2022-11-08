@@ -65,7 +65,7 @@ public class Instruction extends Node {
                     break;
                 case 1:
                     this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode, false));
-                    this.addChild(new TokenNode(this, "SEMICOLON", false, ";", this.treeRootNode));
+                    this.addChild(new TokenNode(this, "SEMICOLON", false, ";\n", this.treeRootNode));
                     break;
             }
         }

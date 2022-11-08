@@ -19,7 +19,6 @@ public class Runner {
 
         Program program = new Program();
 
-
     }
 
     private static void antlrScan(){

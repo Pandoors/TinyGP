@@ -21,16 +21,16 @@ public class ForLoop extends Node {
     }
 
     //for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R; // minDepth: 3
-    //                this.addChild(new IfStatement(this, "IF_STATEMENT", true, treeRootNode));
+    //this.addChild(new IfStatement(this, "IF_STATEMENT", true, treeRootNode));
     @Override
     public void generateRandomChildren() { //todo @boro jak ci sie chce mozesz dorobic taka sama flage do comparison i glebiej zeby ten for mial wiecej niz mniej sensu
         this.addChild(new TokenNode(this, "FOR", false, "for", treeRootNode));
         this.addChild(new TokenNode(this, "BRACKET_L", false, "(", treeRootNode));
-        this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode));
+        this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode, true));
         this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
         this.addChild(new Comparison(this, "COMPARISON", true, treeRootNode));
         this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
-        this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode, true));//todo tutaj trzeba zrobic zeby to z assignment bylo po lewej i prawej jakas flaga do konstruktora
+        this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode, true));
         this.addChild(new TokenNode(this, "BRACKET_R", false, ")", treeRootNode));
         this.addChild(new TokenNode(this, "PARENT_L", false, "{", treeRootNode));
 
@@ -44,7 +44,7 @@ public class ForLoop extends Node {
                     this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
                     break;
                 case 1:
-                    this.addChild(new TokenNode(this, "COMMENT", false, "//test", treeRootNode));
+                    this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
                     break;
             }
             random = new Random();

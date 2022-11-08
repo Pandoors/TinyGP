@@ -16,7 +16,7 @@ public class Program extends Node {
         this.variables = new ArrayList<>();
 
         this.setDepth(0);
-        this.setMaxDepth(100);
+        this.setMaxDepth(10);
         // XDD 5 gestosc kodu
         this.treeRootNode = this;
 
@@ -30,7 +30,7 @@ public class Program extends Node {
 
     @Override
     public void generateRandomChildren() {
-        //          todo koniecznie jesli to jest empty nie przechodzimy do modification! tu jest ten check
+//          todo koniecznie jesli to jest empty nie przechodzimy do modification! tu jest ten check
 //todo boro tutaj jakis depth ? moze do while-a proponuje dodac warunek z glebokoscia oprocz tego random inta
         Random random = new Random();
         int randomInt = random.nextInt(2);
