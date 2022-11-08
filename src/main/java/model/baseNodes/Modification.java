@@ -13,7 +13,6 @@ public class Modification extends Node {
     public Modification(Node parentNode, String name, boolean isCrossable, Program program, boolean fromForLoop) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1); //todo @Boro tyle tu?
-        this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
         this.fromForLoop = fromForLoop;
     }

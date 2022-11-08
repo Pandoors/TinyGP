@@ -12,7 +12,6 @@ public class IfStatement extends Node {
     public IfStatement(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(4);
-        this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
 

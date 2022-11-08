@@ -11,6 +11,8 @@ public class Program extends Node {
 
     protected List<TokenNode> variables;
 
+    private int maxReachedDepth;
+
     public Program() {
         super();
         this.variables = new ArrayList<>();
@@ -19,6 +21,8 @@ public class Program extends Node {
         this.setMaxDepth(10);
         // XDD 5 gestosc kodu
         this.treeRootNode = this;
+        this.maxReachedDepth = 0;
+
 
         this.generateRandomChildren();
     }
@@ -52,6 +56,18 @@ public class Program extends Node {
 
     public void addVariable(TokenNode var) {
         this.variables.add(var);
+    }
+
+    public int getMaxReachedDepth() {
+        return maxReachedDepth;
+    }
+
+    public boolean checkDepth(Node node) {
+        if (node.getDepth() > this.maxReachedDepth) {
+            this.maxReachedDepth = node.depth;
+        }
+
+        return maxReachedDepth < this.maxDepth;
     }
 
 }

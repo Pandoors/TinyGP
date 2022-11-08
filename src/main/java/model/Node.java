@@ -33,9 +33,12 @@ public abstract class Node {
     public Node(Node parentNode, String name, Boolean isCrossable, Program program) {
         this.parentNode = parentNode;
         this.name = name;
+
         this.isCrossable = Boolean.TRUE.equals(isCrossable);
         this.children = new ArrayList<>();
         this.treeRootNode = program;
+        this.setDepth(this.parentNode.getDepth() + 1);
+        treeRootNode.checkDepth(this);
         this.checKTheMinDepth();
     }
 

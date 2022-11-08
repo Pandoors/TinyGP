@@ -11,7 +11,6 @@ public class MathExpression extends Node {
     public MathExpression(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(2);
-        this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
 

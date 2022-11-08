@@ -12,7 +12,6 @@ public class TokenNode extends Node {
         super(parentNode, name, isCrossable, program);
         this.token = token;
         this.setMinDepthRequired(0);
-        this.setDepth(this.parentNode.getDepth() + 1);
     }
 
     public String getToken() {

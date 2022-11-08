@@ -9,7 +9,6 @@ public class WriteOrOut extends Node {
     public WriteOrOut(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1);
-        this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
 

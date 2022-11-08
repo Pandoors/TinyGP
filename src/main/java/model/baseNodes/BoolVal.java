@@ -11,7 +11,6 @@ public class BoolVal extends Node {
     public BoolVal(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1); //todo @Boro tyle tu? YEP
-        this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
 

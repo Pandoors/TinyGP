@@ -11,7 +11,6 @@ public class InstructionGeneral extends Node {
     public InstructionGeneral(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1);
-        this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
 
@@ -27,18 +26,21 @@ public class InstructionGeneral extends Node {
         int randomInt = random.nextInt(3);
         // checking if we can add child
 
-        switch (this.treeRootNode.getMaxDepth() - this.depth){
-            case 1:
-                // then  we go for just COMMENT
-                this.addChildrenWithMaxDepth0();
-                break;
-            case 2:
-                // then we go just for COMMENT and assigment
-                this.addChildrenWithMaxDepth1();
-                break;
-            default: // then we go for all
-                this.addChildrenWithMaxDepth2();
-                break;
+        while(treeRootNode.getMaxReachedDepth() < treeRootNode.getMaxDepth()) {
+
+            switch (this.treeRootNode.getMaxDepth() - this.depth) {
+                case 1:
+                    // then  we go for just COMMENT
+                    this.addChildrenWithMaxDepth0();
+                    break;
+                case 2:
+                    // then we go just for COMMENT and assigment
+                    this.addChildrenWithMaxDepth1();
+                    break;
+                default: // then we go for all
+                    this.addChildrenWithMaxDepth2();
+                    break;
+            }
         }
     }
 
@@ -50,10 +52,11 @@ public class InstructionGeneral extends Node {
             randomInt = random.nextInt(2);
         }
     }
+
     private void addChildrenWithMaxDepth1(){
         Random random = new Random();
         int randomInt = random.nextInt(3);
-        while(randomInt!=3) {
+        while(randomInt!=2) {
             switch (randomInt) {
                 case 0:
                     this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));

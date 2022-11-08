@@ -13,7 +13,6 @@ public class Assignment extends Node {
     public Assignment(Node parentNode, String name, boolean isCrossable, Program program, boolean fromForLoop) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1);
-        this.setDepth(this.parentNode.getDepth() + 1);
         this.fromForLoop = fromForLoop;
         this.generateRandomChildren();
 
