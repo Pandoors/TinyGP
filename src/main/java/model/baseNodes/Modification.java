@@ -27,19 +27,15 @@ public class Modification extends Node {
 //  modification: IDENTIFIER EQUAL (math_expr | READ_OR_IN); minDepthRequired = 1
     @Override
     public void generateRandomChildren() {
+
         Random random = new Random();
-        if(this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
-            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
         int randomInt = random.nextInt(2);
-        // warunek na maxDepthRequired
-        if(this.treeRootNode.getMaxDepth() - this.depth < 2)
-            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth - 1 < 1");
-        if(this.treeRootNode.getMaxDepth() - this.depth == 2) randomInt = 1;
 
-
+        if(this.treeRootNode.getMaxDepth() - this.depth == 2)
+            randomInt = 1;
         switch (randomInt) {
             case 0:
-                int randomInt_2 = random.nextInt(this.treeRootNode.getVariables().size());// TODO: to rzuca wyjątek, chyba nie może być w random.nextInt(0)
+                int randomInt_2 = random.nextInt(this.treeRootNode.getVariables().size());
                 this.addChild(new TokenNode(this, "IDENTIFIER", false,fromForLoop ? this.treeRootNode.getVariables().get(treeRootNode.getVariables().size()-1).getToken() : this.treeRootNode.getVariables().get(randomInt_2).getToken(), treeRootNode));
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
                 this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));

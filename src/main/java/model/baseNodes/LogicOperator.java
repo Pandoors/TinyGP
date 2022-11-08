@@ -26,8 +26,6 @@ public class LogicOperator extends Node {
         Random random = new Random();
         int randomInt = random.nextInt(2);
         // checking if we can add child
-        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
-            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
         switch (randomInt) {
             case 0:
                 this.addChild(new TokenNode(this, "OR", false, "||", treeRootNode));

@@ -32,12 +32,8 @@ public class Program extends Node {
     public void generateRandomChildren() {
 //          todo koniecznie jesli to jest empty nie przechodzimy do modification! tu jest ten check
 //todo boro tutaj jakis depth ? moze do while-a proponuje dodac warunek z glebokoscia oprocz tego random inta
-        Random random = new Random();
-        int randomInt = random.nextInt(2);
-        while(randomInt != 1) { // todo to jest gwiazdka wieeec w sumie to moze byc pusty program
-            this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode));
-            randomInt = random.nextInt(2);
-        }
+
+        this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode));
         this.print();
     }
 

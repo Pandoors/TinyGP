@@ -54,13 +54,13 @@ num_val: (ADD_ | SUBTRACT_)? INT_VAL // minDepth: 1
 
 math_expr: math_expr math_symbol math_expr // minDepth: 2
 | BRACKET_L math_expr BRACKET_R
-| num_val;
+| num_val; // mD1
 
 assignment: INT IDENTIFIER EQUAL (math_expr | READ_OR_IN) // minDepth: 1
 | STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
 | BOOL IDENTIFIER EQUAL (bool_val | READ_OR_IN );
 
-if_statement: IF logic_condition PARENT_L  (instruction | COMMENT )*  PARENT_R; // minDepth = 4 s
+if_statement: IF logic_condition PARENT_L  (instruction | COMMENT )*  PARENT_R; // minDepth = 4
 
 logic_condition: BRACKET_L logic_statement (logic_operator logic_statement)* BRACKET_R; // minDepth = 3
 
@@ -82,7 +82,7 @@ EQUAL EQUAL //mD0
 | GREATER_EQUAL //mD0
 | LESS_EQUAL; //mD0
 
-for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R; // minDepth: 3 TODO: add depth
+for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R; // minDepth: 2 TODO: add depth
 
 instruction: // minDepth:2
 modification SEMICOLON //mD1 + (checking If varialble is declared)

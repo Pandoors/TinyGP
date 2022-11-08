@@ -22,8 +22,6 @@ public class BoolVal extends Node {
 
     @Override
     public void generateRandomChildren() {
-        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
-            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
         Random random = new Random();
         int randomInt = random.nextInt(2);
         switch (randomInt) {

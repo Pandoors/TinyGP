@@ -10,7 +10,7 @@ public class ForLoop extends Node {
 
     public ForLoop(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
-        this.setMinDepthRequired(1);
+        this.setMinDepthRequired(2);
         this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
@@ -37,7 +37,7 @@ public class ForLoop extends Node {
         Random random = new Random();
         int randomInt = random.nextInt(2);
 
-        while (randomInt != 0) { //todo @Boro ogarnij tutaj te glebokosci drzewa
+        while (randomInt != 0) {
             int randomInt2 = random.nextInt(2);
             switch (randomInt2) {
                 case 0:

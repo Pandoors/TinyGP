@@ -24,8 +24,6 @@ public class Comparison extends Node {
     @Override
     public void generateRandomChildren() {
         // checking if we can add child
-        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1)
-            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
 
         this.addChild(new NumVal(this, "NUM_VAL", false, treeRootNode));
         this.addChild(new Comparator(this, "COMPARATOR", false, treeRootNode));

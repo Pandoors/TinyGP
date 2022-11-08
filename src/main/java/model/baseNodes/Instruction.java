@@ -23,9 +23,6 @@ public class Instruction extends Node {
     @Override
     public void generateRandomChildren() {
 
-        if(this.treeRootNode.getMaxDepth() - this.depth < this.minDepthRequired)
-            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired");
-
         int depthChoice;
 
         switch (this.treeRootNode.getMaxDepth() - this.depth){
@@ -58,7 +55,7 @@ public class Instruction extends Node {
         // we need to check if we have any variables
         if(this.treeRootNode.getVariables().isEmpty()) // then we can just got for writeOrOut
             this.addChild(new WriteOrOut(this, "WRITE_OR_OUT", true, this.treeRootNode));
-        else { //we can choose between writeOrOut | modification SEMICOLON
+        else { //we can choose between writeOrOut | modifiscation SEMICOLON
             switch (new Random().nextInt(2)) {
                 case 0:
                     this.addChild(new WriteOrOut(this, "WRITE_OR_OUT", true, this.treeRootNode));

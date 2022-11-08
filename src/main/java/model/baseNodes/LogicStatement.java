@@ -27,7 +27,6 @@ public class LogicStatement extends Node {
         Random random = new Random();
         int randomInt = random.nextInt(2);
         // checking if we can add child
-        if(this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1) throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1"); //TODO generalize this method
 
         if(this.treeRootNode.getMaxDepth()-this.depth == 2)
             this.addChildrenWithMaxDepth1();

@@ -30,8 +30,6 @@ public class Assignment extends Node {
 
     @Override
     public void generateRandomChildren() {
-        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired)
-            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
 
         boolean goShort = this.treeRootNode.getMaxDepth() - this.depth == 1;
 
@@ -70,12 +68,13 @@ public class Assignment extends Node {
                 Random random2 = new Random();
                 switch (random2.nextInt(2)) {
                     case 0:
-                        this.addChild(new TokenNode(this, "STRING_VAL", false, "a", treeRootNode));
+                        this.addChild(new TokenNode(this, "STRING_VAL", false, "\"test\"", treeRootNode));
                         break;
                     case 1:
                         this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
                         break;
                 }
+                break;
             case 2://3. BOOL IDENTIFIER EQUAL
                 this.addChild(new TokenNode(this, "BOOL", false, "boolean ", treeRootNode));
                 int index2 = this.treeRootNode.getVariables().size() + 1;

@@ -10,7 +10,7 @@ public class LogicCondition extends Node {
 
     public LogicCondition(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
-        this.setMinDepthRequired(3); //todo @Boro tyle tu?
+        this.setMinDepthRequired(3);
         this.setDepth(this.parentNode.getDepth() + 1);
         this.generateRandomChildren();
     }
@@ -23,9 +23,6 @@ public class LogicCondition extends Node {
     //logic_condition: BRACKET_L logic_statement (logic_operator logic_statement)* BRACKET_R; // minDepth = 3
     @Override
     public void generateRandomChildren() {
-        if (this.treeRootNode.getMaxDepth() - this.depth < minDepthRequired - 1) {
-            throw new RuntimeException("Cannot add child to node " + this.name + " because maxDepth - depth < minDepthRequired - 1");
-        }
 
         this.addChild(new TokenNode(this, "BRACKET_L", false, "(", treeRootNode));
         this.addChild(new LogicStatement(this, "LOGIC_STATEMENT", true, treeRootNode));

@@ -36,6 +36,7 @@ public abstract class Node {
         this.isCrossable = Boolean.TRUE.equals(isCrossable);
         this.children = new ArrayList<>();
         this.treeRootNode = program;
+        this.checKTheMinDepth();
     }
 
     protected abstract void addChild(Node child);
@@ -66,12 +67,14 @@ public abstract class Node {
         return maxDepth;
     }
 
-    public int getMinDepthRequired() {
-        return minDepthRequired;
-    }
-
     public Program getTreeRootNode() {
         return treeRootNode;
+    }
+
+    private void checKTheMinDepth(){
+        if(this.treeRootNode.getMaxDepth() - this.getDepth() < this.minDepthRequired){
+            System.out.println("ERROR: " + this.getClass().getName() +  " MAXDEPTH " + this.treeRootNode.getMaxDepth() + " DEPTH " + this.depth + "\n");
+        }
     }
 
 }

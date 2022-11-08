@@ -11,7 +11,7 @@ public class NumVal extends Node {
 
     public NumVal(Node parentNode, String name, Boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
-
+        this.setMinDepthRequired(1);
         this.generateRandomChildren();
     }
 
