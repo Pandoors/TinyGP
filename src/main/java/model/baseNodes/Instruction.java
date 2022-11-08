@@ -25,6 +25,9 @@ public class Instruction extends Node {
         int depthChoice;
 
         switch (this.treeRootNode.getMaxDepth() - this.depth){
+            case 0:
+            case 1:
+                return;
             case 2:
                 depthChoice = 1;
                 break;

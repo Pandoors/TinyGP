@@ -29,7 +29,7 @@ public class IfStatement extends Node {
         Random random = new Random();
         int randomInt = random.nextInt(2);
 
-        while (randomInt != 0) { //todo @Boro ogarnij tutaj te glebokosci drzewa
+        while (randomInt != 0) {
             this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
 
             this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
