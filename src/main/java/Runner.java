@@ -1,6 +1,7 @@
 import definition.TinyGp;
 import definition.TinyGpExtended;
 import model.Program;
+import model.genetic.Operations;
 import utils.Evaluator;
 import utils.ParserXLSX;
 
@@ -18,7 +19,10 @@ public class Runner {
         }
 
         Program program = new Program();
+        Program program2 = new Program();
 
+        Program program3 = Operations.cross(program, program2);
+        program3.print();
     }
 
     private static void antlrScan(){

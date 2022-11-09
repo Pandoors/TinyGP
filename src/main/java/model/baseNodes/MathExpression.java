@@ -24,7 +24,7 @@ public class MathExpression extends Node {
         Random random = new Random();
         int randomInt = random.nextInt(3);
         // checking if we can add child
-        if(this.treeRootNode.getMaxDepth() - this.depth  == 2) randomInt = 2; // we have no choice if , we add NumVal , still - 1 is quite ugly
+        if(this.treeRootNode.getMaxDepth() - this.depth  <= 2) randomInt = 2; // we have no choice if , we add NumVal , still - 1 is quite ugly
         switch (randomInt) {
             case 0:
                 this.addChild( new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));// min required depth = 2
@@ -51,3 +51,4 @@ public class MathExpression extends Node {
     }
 
 }
+

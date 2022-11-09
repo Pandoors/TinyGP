@@ -1,5 +1,6 @@
 package model;
 
+import lombok.Setter;
 import model.baseNodes.*;
 import model.tokenNode.TokenNode;
 
@@ -7,11 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 public class Program extends Node {
 
     protected List<TokenNode> variables;
 
     private int maxReachedDepth;
+
+    public void setMaxReachedDepth(int maxReachedDepth) {
+        this.maxReachedDepth = maxReachedDepth;
+    }
 
     public Program() {
         super();
@@ -22,9 +28,18 @@ public class Program extends Node {
         // XDD 5 gestosc kodu
         this.treeRootNode = this;
         this.maxReachedDepth = 0;
-
-
         this.generateRandomChildren();
+    }
+
+    public Program(boolean incel){
+        super();
+        this.variables = new ArrayList<>();
+
+        this.setDepth(0);
+        this.setMaxDepth(10);
+        // XDD 5 gestosc kodu
+        this.treeRootNode = this;
+        this.maxReachedDepth = 0;
     }
 
     @Override
@@ -39,6 +54,10 @@ public class Program extends Node {
 
         this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode));
         this.print();
+    }
+
+    public void setVariables(List<TokenNode> variables) {
+        this.variables = variables;
     }
 
     @Override
@@ -66,8 +85,19 @@ public class Program extends Node {
         if (node.getDepth() > this.maxReachedDepth) {
             this.maxReachedDepth = node.depth;
         }
-
         return maxReachedDepth < this.maxDepth;
     }
 
+    public Program copy(){
+        Program program = new Program(true);
+        program.setDepth(this.depth);
+        program.setMaxDepth(this.maxDepth);
+        program.setMaxReachedDepth(this.maxReachedDepth);
+        program.setTreeRootNode(this.treeRootNode);
+        program.setVariables(this.variables);
+        program.setChildren(this.children);
+        return program;
+    }
+
 }
+
