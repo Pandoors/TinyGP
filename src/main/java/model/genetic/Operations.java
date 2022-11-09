@@ -30,7 +30,6 @@ public class Operations {
         node.getChildren().clear();
         node.getTreeRootNode().setMaxReachedDepth(0);
         node.generateRandomChildren();
-        System.out.println(node.getName());
         System.out.println("\n---------------------------------------MUTATION----------------------------------------\n");
         node.getTreeRootNode().print();
         System.out.println("\n---------------------------------------MUTATION-END----------------------------------------\n");
