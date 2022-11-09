@@ -31,7 +31,7 @@ public class ForLoop extends Node {
         this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
         this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode, true));
         this.addChild(new TokenNode(this, "BRACKET_R", false, ")", treeRootNode));
-        this.addChild(new TokenNode(this, "PARENT_L", false, "{", treeRootNode));
+        this.addChild(new TokenNode(this, "PARENT_L", false, "{ \n", treeRootNode));
 
         Random random = new Random();
         int randomInt = random.nextInt(2);
@@ -50,7 +50,7 @@ public class ForLoop extends Node {
             randomInt = random.nextInt(2);
         }
 
-        this.addChild(new TokenNode(this, "PARENT_R", false, "}", treeRootNode));
+        this.addChild(new TokenNode(this, "PARENT_R", false, "} \n", treeRootNode));
 
 
     }
