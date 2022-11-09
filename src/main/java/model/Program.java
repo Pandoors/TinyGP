@@ -25,21 +25,27 @@ public class Program extends Node {
 
         this.setDepth(0);
         this.setMaxDepth(10);
-        // XDD 5 gestosc kodu
+
         this.treeRootNode = this;
         this.maxReachedDepth = 0;
         this.generateRandomChildren();
+        this.print();
     }
 
-    public Program(boolean x){
+    public Program(boolean print){
         super();
         this.variables = new ArrayList<>();
 
         this.setDepth(0);
         this.setMaxDepth(10);
-        // XDD 5 gestosc kodu
+
         this.treeRootNode = this;
         this.maxReachedDepth = 0;
+        this.generateRandomChildren();
+
+        if(print){
+            this.print();
+        }
     }
 
     @Override
@@ -49,12 +55,10 @@ public class Program extends Node {
 
     @Override
     public void generateRandomChildren() {
-//          todo koniecznie jesli to jest empty nie przechodzimy do modification! tu jest ten check
-//todo boro tutaj jakis depth ? moze do while-a proponuje dodac warunek z glebokoscia oprocz tego random inta
 
         this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode));
         addChildrenToSerialisationList();
-        this.print();
+
     }
 
     public void setVariables(List<TokenNode> variables) {
@@ -89,16 +93,7 @@ public class Program extends Node {
         return maxReachedDepth < this.maxDepth;
     }
 
-    public Program copy(){
-        Program program = new Program(true);
-        program.setDepth(this.depth);
-        program.setMaxDepth(this.maxDepth);
-        program.setMaxReachedDepth(this.maxReachedDepth);
-        program.setTreeRootNode(this.treeRootNode);
-        program.setVariables(this.variables);
-        program.setChildren(this.children);
-        return program;
-    }
+
 
 }
 
