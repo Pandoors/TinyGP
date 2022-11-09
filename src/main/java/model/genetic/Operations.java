@@ -26,17 +26,49 @@ public class Operations {
         return node.getTreeRootNode();
     }
 
+    public static List<Node> getAllNodes(Node node){
+        if (node.getChildren().isEmpty()) {
+            return new ArrayList<>() {};
+        }
+        else
+        {
+            List<Node> nodes = new ArrayList<>();
+            for(Node child : node.getChildren())
+            {
+                nodes.addAll(getAllNodes(child));
+            }
+            nodes.addAll(node.getChildren());
+            return nodes;
+        }
+    }
+
+    public static Program cros(Program program, Program program2){
+        List<Node> nodeList1 = Operations.getAllNodes(program);
+        List<Node> nodeList2 = Operations.getAllNodes(program2);
+
+
+    }
+
     public static Program crossowanie(Node program1, Node program2){
         Node p1 = program1;
         Node p2 = program2;
 
         int randomInt = p1.getMaxDepth();
+        int childindex = 0;
         while(randomInt > 0) {
             randomInt--;
             if(!(p1  instanceof TokenNode ) && !p1.getName().equals("rootNode") && !p1.getName().equals("INSTRUCTION_GENERAL")) {
                 break;
             }
-            p1 = p1.getChildren().get(new Random().nextInt(p1.getChildren().size()));
+            Node parent = p1.getParentNode();
+            try {
+                p1 = parent.getChildren().get(childindex);
+            } catch (IndexOutOfBoundsException e) {
+                childindex = 0;
+                p1 = parent.getChildren().get(childindex);
+            }
+
+            childindex++;
         }
 
         String name = p1.getName();
