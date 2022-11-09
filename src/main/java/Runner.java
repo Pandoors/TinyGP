@@ -20,15 +20,23 @@ public class Runner {
         }
 
         Program program = new Program();
-        Program program2 = new Program();
+//        program.print();
+        System.out.println(" \n----------------------------------------------- \n");
 
-        Node program3 = Operations.crossing(program, program2);
-        System.out.println("Program 3: ");
-        while (program3 != null) {
-            program3 = Operations.mutation(program3);
-            System.out.println("Program 3: ");
-            program3.print();
-        }
+        Program program2 = new Program();
+//        program2.print();
+        System.out.println(" \n----------------------------------------------- \n");
+
+        Program p3 = Operations.crossowanie(program, program2);
+        p3.print();
+
+//        Node program3 = Operations.crossing(program, program2);
+//        System.out.println("Program 3: ");
+//        while (program3 != null) {
+//            program3 = Operations.mutation(program3);
+//            System.out.println("Program 3: ");
+//            program3.print();
+//        }
     }
 
     private static void antlrScan(){

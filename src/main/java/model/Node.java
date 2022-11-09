@@ -83,5 +83,10 @@ public abstract class Node {
     public void setChildren(List<Node> children) {
         this.children = children;
     }
+
+    public void cross(Node toCross){
+        this.children.add(toCross);
+    }
+
 }
 

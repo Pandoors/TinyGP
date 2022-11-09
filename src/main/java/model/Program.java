@@ -31,7 +31,7 @@ public class Program extends Node {
         this.generateRandomChildren();
     }
 
-    public Program(boolean incel){
+    public Program(boolean x){
         super();
         this.variables = new ArrayList<>();
 

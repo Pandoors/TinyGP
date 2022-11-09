@@ -26,6 +26,39 @@ public class Operations {
         return node.getTreeRootNode();
     }
 
+    public static Program crossowanie(Node program1, Node program2){
+        Node p1 = program1;
+        Node p2 = program2;
+
+        int randomInt = p1.getMaxDepth();
+        while(randomInt > 0) {
+            randomInt--;
+            if(!(p1  instanceof TokenNode ) && !p1.getName().equals("rootNode") && !p1.getName().equals("INSTRUCTION_GENERAL")) {
+                break;
+            }
+            p1 = p1.getChildren().get(new Random().nextInt(p1.getChildren().size()));
+        }
+
+        String name = p1.getName();
+
+        int randomInt2 = p2.getMaxDepth();
+        while(randomInt2 > 0) {
+            randomInt2--;
+            if(p2.getName().equals(p1.getName())) {
+                break;
+            }
+            p2 = p2.getChildren().get(new Random().nextInt(p2.getChildren().size()));
+        }
+        if(p2.getName().equals(p1.getName())) {
+            p2.setChildren(new ArrayList<>());
+            p2.setChildren(p1.getChildren());
+
+            System.out.println("EUREKA!!!!!!!!!!!!!!!!!!!!!!!!" + p2.getName());
+        }
+        return p2.getTreeRootNode();
+
+    }
+
     public static Node crossing(Node node1, Node node2){
         int randomInt = new Random().nextInt(node1.getMaxDepth())/2;
         while(randomInt > 0) {
