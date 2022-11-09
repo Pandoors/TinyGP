@@ -19,7 +19,9 @@ public class Runner {
             log = args[0];
         }
 
+        Program p1 = new Program(false);
 
+        Operations.mutation(p1);
 
     }
 
