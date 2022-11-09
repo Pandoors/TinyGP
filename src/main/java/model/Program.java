@@ -53,6 +53,7 @@ public class Program extends Node {
 //todo boro tutaj jakis depth ? moze do while-a proponuje dodac warunek z glebokoscia oprocz tego random inta
 
         this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode));
+        addChildrenToSerialisationList();
         this.print();
     }
 
