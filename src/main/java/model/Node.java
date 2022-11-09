@@ -3,6 +3,7 @@ package model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import model.tokenNode.TokenNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +22,10 @@ public abstract class Node {
     protected int minDepthRequired;
     protected Program treeRootNode;
     public static final Random RANDOM = new Random();
-
+    protected List<Node> allNodesForSerial = null;
     // constructor ONLY for first starting node of tree
     public Node() {
+        this.allNodesForSerial = new ArrayList<>();
         this.parentNode = this;
         this.name = "rootNode";
         this.isCrossable = false;
@@ -78,6 +80,18 @@ public abstract class Node {
 //        if(this.treeRootNode.getMaxDepth() - this.getDepth() < this.minDepthRequired){
 //            System.out.println("ERROR: " + this.getClass().getName() +  " MAXDEPTH " + this.treeRootNode.getMaxDepth() + " DEPTH " + this.depth + "WITH PARENT: " + this.parentNode.getClass().getName() +  "\n");
 //        }
+    }
+
+    protected void addChildrenToSerialisationList(){
+
+        for (Node child : this.getChildren()) {
+            child.addChildrenToSerialisationList();
+        }
+
+    }
+
+    public void appendAllNodes(Node tn){
+        this.treeRootNode.allNodesForSerial.add(tn);
     }
 
 }
