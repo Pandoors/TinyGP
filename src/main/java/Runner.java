@@ -1,5 +1,6 @@
 import definition.TinyGp;
 import definition.TinyGpExtended;
+import model.Node;
 import model.Program;
 import model.genetic.Operations;
 import utils.Evaluator;
@@ -21,7 +22,8 @@ public class Runner {
         Program program = new Program();
         Program program2 = new Program();
 
-        Program program3 = Operations.cross(program, program2);
+        Node program3 = Operations.crossover(program, program2);
+        System.out.println("Program 3: ");
         program3.print();
     }
 
