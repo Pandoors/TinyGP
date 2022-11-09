@@ -13,6 +13,7 @@ public class Evaluator {
                 replace("X1", "x")
                 .replace("X2", "y");
 
+
         ExprEvaluator evaluator = new ExprEvaluator();
         IExpr result = evaluator.eval(functionWithArg);
         return result.toString();

@@ -22,9 +22,13 @@ public class Runner {
         Program program = new Program();
         Program program2 = new Program();
 
-        Node program3 = Operations.crossover(program, program2);
+        Node program3 = Operations.crossing(program, program2);
         System.out.println("Program 3: ");
-        program3.print();
+        while (program3 != null) {
+            program3 = Operations.mutation(program3);
+            System.out.println("Program 3: ");
+            program3.print();
+        }
     }
 
     private static void antlrScan(){

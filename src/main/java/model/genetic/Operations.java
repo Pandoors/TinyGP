@@ -26,33 +26,106 @@ public class Operations {
         return node.getTreeRootNode();
     }
 
-    public static Node crossover(Node node1, Node node2) {
-        int randomInt = new Random().nextInt(node1.getMaxDepth()) / 2;
-        while (randomInt > 0) {
+    public static Node crossing(Node node1, Node node2){
+        int randomInt = new Random().nextInt(node1.getMaxDepth())/2;
+        while(randomInt > 0) {
             randomInt--;
-            if (node1.getChildren().isEmpty()) {
+            if(node1.getChildren().isEmpty()) {
                 break;
             }
             node1 = node1.getChildren().get(new Random().nextInt(node1.getChildren().size()));
         }
+        if(node1 instanceof TokenNode)
+            node1 = node1.getParentNode();
+        node1.getChildren().clear();
+        node1.getTreeRootNode().setMaxReachedDepth(0);
 
-        while (node2.getChildren().isEmpty()) {
-            if (node2.getChildren().isEmpty()) {
+        int randomInt2 = new Random().nextInt(node2.getMaxDepth())/2;
+        while(randomInt2 > 0) {
+            randomInt2--;
+            if(node2.getChildren().isEmpty()) {
                 break;
-            }
-            if(node2 instanceof TokenNode)
-                node2 = node2.getParentNode();
-            if(Objects.equals(node2.getName(), node1.getName())){
-                node2.getChildren().clear();
-                node2.setChildren(node1.getChildren());
-                return node2.getTreeRootNode();
             }
             node2 = node2.getChildren().get(new Random().nextInt(node2.getChildren().size()));
         }
-
-        return null;
-
+        if( node1.getName().equals(node2.getName())){
+            List<Node> children = new ArrayList<>();
+            children.addAll(node2.getChildren());
+            node1.setChildren(children);
+            return node1.getTreeRootNode();
+        }
+       return null;
     }
+
+
+//    public static Program crossover(Program program1, Program program2){
+//        //exhange two random chosen nodes in tree with the same name
+//        // return combined program
+//        // if no nodes with the same name are found, return null
+//        Node node1 = program1.getTreeRootNode();
+//        Node node2 = program2.getTreeRootNode();
+//        int randomInt = new Random().nextInt(node1.getMaxDepth())/2;
+//        while(randomInt > 0) {
+//            randomInt--;
+//            if(node1.getChildren().isEmpty()) {
+//                break;
+//            }
+//            node1 = node1.getChildren().get(new Random().nextInt(node1.getChildren().size()));
+//        }
+//        randomInt = new Random().nextInt(node2.getMaxDepth())/2;
+//        while(randomInt > 0) {
+//            randomInt--;
+//            if(node2.getChildren().isEmpty()) {
+//                break;
+//            }
+//            node2 = node2.getChildren().get(new Random().nextInt(node2.getChildren().size()));
+//        }
+//        if(node1.getName().equals(node2.getName())){
+//            Node temp = node1.getParentNode();
+//            node1.getParentNode().getChildren().remove(node1);
+//            node2.getParentNode().getChildren().remove(node2);
+//            node1.setParentNode(node2.getParentNode());
+//            node2.setParentNode(temp);
+//            node1.getParentNode().getChildren().add(node1);
+//            node2.getParentNode().getChildren().add(node2);
+//        }
+//        else{
+//            return null;
+//        }
+//        Program program = new Program();
+//        program.setTreeRootNode(node1.getTreeRootNode());
+//        return program;
+//
+//    }
+
+//    public static Node crossover(Node node1, Node node2) {
+//        int randomInt = new Random().nextInt(node1.getMaxDepth()) / 2;
+//        while (randomInt > 0) {
+//            randomInt--;
+//            if (node1.getChildren().isEmpty()) {
+//                break;
+//            }
+//            node1 = node1.getChildren().get(new Random().nextInt(node1.getChildren().size()));
+//        }
+//
+//        while (node2.getChildren().isEmpty()) {
+//            if (node2.getChildren().isEmpty()) {
+//                break;
+//            }
+//            if(node2 instanceof TokenNode)
+//                node2 = node2.getParentNode();
+//            if(Objects.equals(node2.getName(), node1.getName())){
+//                node2.getChildren().clear();
+//                node2.setChildren(node1.getChildren());
+//                return node2.getTreeRootNode();
+//            }
+//            node2 = node2.getChildren().get(new Random().nextInt(node2.getChildren().size()));
+//        }
+//
+//        return null;
+//
+//    }
+
 
 //    public static List<List<Integer>> cross(Program program1 , Program program2){
 //
