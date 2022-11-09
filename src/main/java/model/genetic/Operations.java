@@ -24,6 +24,7 @@ public class Operations {
         node.getChildren().clear();
         node.getTreeRootNode().setMaxReachedDepth(0);
         node.generateRandomChildren();
+        node.getTreeRootNode().print();
         return node.getTreeRootNode();
     }
 
