@@ -1,0 +1,866 @@
+[
+  {
+    "name": "FOR",
+    "value": "for"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "22866151"
+  },
+  {
+    "name": "LESS_EQUAL",
+    "value": "\u003c\u003d"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "429473195"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "PARENT_L",
+    "value": "{ \n"
+  },
+  {
+    "name": "PARENT_R",
+    "value": "} \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "FOR",
+    "value": "for"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1534849201"
+  },
+  {
+    "name": "LESS_EQUAL",
+    "value": "\u003c\u003d"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "PARENT_L",
+    "value": "{ \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "PARENT_R",
+    "value": "} \n"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "207239450"
+  },
+  {
+    "name": "MULTIPLY",
+    "value": "*"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "SUBTRACT_",
+    "value": "-"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "DIVIDE",
+    "value": "/"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1081006451"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "MULTIPLY",
+    "value": "*"
+  },
+  {
+    "name": "SUBTRACT_",
+    "value": "-"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "FOR",
+    "value": "for"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x3"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x3"
+  },
+  {
+    "name": "GREATER_EQUAL",
+    "value": "\u003e\u003d"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "211469935"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "PARENT_L",
+    "value": "{ \n"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "MULTIPLY",
+    "value": "*"
+  },
+  {
+    "name": "SUBTRACT_",
+    "value": "-"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x3"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "FOR",
+    "value": "for"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x4"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT_VAL",
+    "value": "277891671"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "SUBTRACT_",
+    "value": "-"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "NOT_EQUAL",
+    "value": "!\u003d"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "ADD_",
+    "value": "+"
+  },
+  {
+    "name": "SUBTRACT_",
+    "value": "-"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "PARENT_L",
+    "value": "{ \n"
+  },
+  {
+    "name": "PARENT_R",
+    "value": "} \n"
+  },
+  {
+    "name": "FOR",
+    "value": "for"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x5"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "SUBTRACT_",
+    "value": "-"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x5"
+  },
+  {
+    "name": "GREATER",
+    "value": "\u003e"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1404522892"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x5"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "PARENT_L",
+    "value": "{ \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "FOR",
+    "value": "for"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x6"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "SUBTRACT_",
+    "value": "-"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1874588803"
+  },
+  {
+    "name": "LESS",
+    "value": "\u003c"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x5"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x3"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "PARENT_L",
+    "value": "{ \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "PARENT_R",
+    "value": "} \n"
+  },
+  {
+    "name": "PARENT_R",
+    "value": "} \n"
+  },
+  {
+    "name": "printl(",
+    "value": "printl("
+  },
+  {
+    "name": "STRING_VAL",
+    "value": " \" test \" "
+  },
+  {
+    "name": ")",
+    "value": ")"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "FOR",
+    "value": "for"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x7"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT_VAL",
+    "value": "263652673"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "875711854"
+  },
+  {
+    "name": "GREATER",
+    "value": "\u003e"
+  },
+  {
+    "name": "SUBTRACT_",
+    "value": "-"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1055424218"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "PARENT_L",
+    "value": "{ \n"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "FOR",
+    "value": "for"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x8"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x7"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1360426830"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x3"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "PARENT_L",
+    "value": "{ \n"
+  },
+  {
+    "name": "printl(",
+    "value": "printl("
+  },
+  {
+    "name": "STRING_VAL",
+    "value": " \" test \" "
+  },
+  {
+    "name": ")",
+    "value": ")"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "printl(",
+    "value": "printl("
+  },
+  {
+    "name": "STRING_VAL",
+    "value": " \" test \" "
+  },
+  {
+    "name": ")",
+    "value": ")"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "PARENT_R",
+    "value": "} \n"
+  },
+  {
+    "name": "PARENT_R",
+    "value": "} \n"
+  },
+  {
+    "name": "PARENT_R",
+    "value": "} \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "STRING",
+    "value": "string "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x9"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "READ_OR_IN",
+    "value": "sysIn()"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  }
+]
