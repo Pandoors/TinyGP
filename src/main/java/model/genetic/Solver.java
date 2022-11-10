@@ -38,7 +38,9 @@ public class Solver {
                 Program program = Operations.cross(tournament(2).get(0), tournament(2).get(1));
                 for(int i = 0; i< negative_tournament(1).size();  i++){
                     programs.set(i, program);
+
             }
+
         }
     }
 

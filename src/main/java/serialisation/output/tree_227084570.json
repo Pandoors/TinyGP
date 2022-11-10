@@ -1,1 +1,170 @@
-[{"name":"printl(","value":"printl("},{"name":"STRING_VAL","value":" \" test \" "},{"name":")","value":")"},{"name":"SEMICOLON","value":";\n"},{"name":"FOR","value":"for"},{"name":"BRACKET_L","value":"("},{"name":"INT","value":"int "},{"name":"IDENTIFIER","value":"x1"},{"name":"EQUAL","value":"\u003d"},{"name":"IDENTIFIER","value":"x1"},{"name":"MULTIPLY","value":"*"},{"name":"BRACKET_L","value":"("},{"name":"INT_VAL","value":"1286101015"},{"name":"DIVIDE","value":"/"},{"name":"INT_VAL","value":"386645029"},{"name":"BRACKET_R","value":")"},{"name":"SEMICOLON","value":";"},{"name":"INT_VAL","value":"1277887239"},{"name":"NOT_EQUAL","value":"!\u003d"},{"name":"INT_VAL","value":"1150737516"},{"name":"SEMICOLON","value":";"},{"name":"IDENTIFIER","value":"x1"},{"name":"EQUAL","value":"\u003d"},{"name":"BRACKET_L","value":"("},{"name":"BRACKET_L","value":"("},{"name":"INT_VAL","value":"240527234"},{"name":"MULTIPLY","value":"*"},{"name":"INT_VAL","value":"1269730698"},{"name":"BRACKET_R","value":")"},{"name":"BRACKET_R","value":")"},{"name":"BRACKET_R","value":")"},{"name":"PARENT_L","value":"{ \n"},{"name":"PARENT_R","value":"} \n"},{"name":"COMMENT","value":"//test \n"},{"name":"INT","value":"int "},{"name":"IDENTIFIER","value":"x2"},{"name":"EQUAL","value":"\u003d"},{"name":"BRACKET_L","value":"("},{"name":"SUBTRACT_","value":"-"},{"name":"IDENTIFIER","value":"x1"},{"name":"BRACKET_R","value":")"},{"name":"SEMICOLON","value":";\n"}]
+[
+  {
+    "name": "printl(",
+    "value": "printl("
+  },
+  {
+    "name": "STRING_VAL",
+    "value": " \" test \" "
+  },
+  {
+    "name": ")",
+    "value": ")"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  },
+  {
+    "name": "FOR",
+    "value": "for"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "MULTIPLY",
+    "value": "*"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1286101015"
+  },
+  {
+    "name": "DIVIDE",
+    "value": "/"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "386645029"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1277887239"
+  },
+  {
+    "name": "NOT_EQUAL",
+    "value": "!\u003d"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1150737516"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "INT_VAL",
+    "value": "240527234"
+  },
+  {
+    "name": "MULTIPLY",
+    "value": "*"
+  },
+  {
+    "name": "INT_VAL",
+    "value": "1269730698"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "PARENT_L",
+    "value": "{ \n"
+  },
+  {
+    "name": "PARENT_R",
+    "value": "} \n"
+  },
+  {
+    "name": "COMMENT",
+    "value": "//test \n"
+  },
+  {
+    "name": "INT",
+    "value": "int "
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x2"
+  },
+  {
+    "name": "EQUAL",
+    "value": "\u003d"
+  },
+  {
+    "name": "BRACKET_L",
+    "value": "("
+  },
+  {
+    "name": "SUBTRACT_",
+    "value": "-"
+  },
+  {
+    "name": "IDENTIFIER",
+    "value": "x1"
+  },
+  {
+    "name": "BRACKET_R",
+    "value": ")"
+  },
+  {
+    "name": "SEMICOLON",
+    "value": ";\n"
+  }
+]
