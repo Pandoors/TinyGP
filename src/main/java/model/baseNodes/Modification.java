@@ -28,24 +28,11 @@ public class Modification extends Node {
     public void generateRandomChildren() {
 
         Random random = new Random();
-        int randomInt = random.nextInt(2);
+        int randomInt_2 = random.nextInt(this.treeRootNode.getVariables().size());
+        this.addChild(new TokenNode(this, "IDENTIFIER", false,fromForLoop ? this.treeRootNode.getVariables().get(treeRootNode.getVariables().size()-1).getToken() : this.treeRootNode.getVariables().get(randomInt_2).getToken(), treeRootNode));
+        this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
+        this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
 
-        if(this.treeRootNode.getMaxDepth() - this.depth == 2)
-            randomInt = 1;
-        switch (randomInt) {
-            case 0:
-                int randomInt_2 = random.nextInt(this.treeRootNode.getVariables().size());
-                this.addChild(new TokenNode(this, "IDENTIFIER", false,fromForLoop ? this.treeRootNode.getVariables().get(treeRootNode.getVariables().size()-1).getToken() : this.treeRootNode.getVariables().get(randomInt_2).getToken(), treeRootNode));
-                this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
-                this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
-                break;
-            case 1:
-                int randomInt_3 = random.nextInt(this.treeRootNode.getVariables().size()); //TODO: to rzuca wyjątek, chyba nie może być w random.nextInt(0)
-                this.addChild(new TokenNode(this, "IDENTIFIER", false,fromForLoop ? this.treeRootNode.getVariables().get(treeRootNode.getVariables().size()-1).getToken() : this.treeRootNode.getVariables().get(randomInt_3).getToken(), treeRootNode));
-                this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
-                this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                break;
-        }
     }
 
     @Override
