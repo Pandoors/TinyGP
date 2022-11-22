@@ -18,7 +18,7 @@ public class Operations {
 
 
         int randomInt = new Random().nextInt(node.getMaxDepth()/2);
-        while (randomInt > 0 || !(List.of("rootNode", "INSTRUCTION_GENERAL").contains(node.getName())) ) {
+        while (randomInt > 0 || (List.of("rootNode", "INSTRUCTION_GENERAL").contains(node.getName())) ) {
             randomInt--;
             if (node.getChildren().isEmpty()) {
                 break;
@@ -27,6 +27,13 @@ public class Operations {
         }
         if (node instanceof TokenNode)
             node = node.getParentNode();
+        List<Node> branch= getAllNodes(node);
+        for(Node node1 : branch){
+            if(Objects.equals(node1.getName(), "ASSIGNMENT")){
+                node.getTreeRootNode().getVariables().remove((TokenNode) node1.getChildren().get(1));
+            }
+
+        }
         node.getChildren().clear();
         node.getTreeRootNode().setMaxReachedDepth(0);
         node.generateRandomChildren();

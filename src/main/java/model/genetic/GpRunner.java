@@ -14,7 +14,5 @@ public class GpRunner {
         solver = new Solver();
         solver.solve();
 
-
     }
-
 }
