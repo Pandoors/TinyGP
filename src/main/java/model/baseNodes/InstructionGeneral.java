@@ -8,10 +8,14 @@ import java.util.Random;
 
 public class InstructionGeneral extends Node {
 
-    public InstructionGeneral(Node parentNode, String name, boolean isCrossable, Program program) {
+    public InstructionGeneral(Node parentNode, String name, boolean isCrossable, Program program, boolean programStart) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1);
-        this.generateRandomChildren();
+        if (programStart) {
+            generateSysInAssignments();
+        } else {
+            this.generateRandomChildren();
+        }
     }
 
     @Override
@@ -19,6 +23,9 @@ public class InstructionGeneral extends Node {
         this.getChildren().add(child);
     }
 
+    public void generateSysInAssignments() {
+        this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode, false, true));
+    }
 
     @Override
     public void generateRandomChildren() {
@@ -84,7 +91,7 @@ public class InstructionGeneral extends Node {
                     this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
                     break;
                 case 2:
-                    this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode, false));
+                    this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode, false, false));
                     this.addChild(new TokenNode(this, "SEMICOLON", false, ";\n", treeRootNode));
                     break;
                 case 3:

@@ -10,12 +10,16 @@ public class Assignment extends Node {
 
     private boolean fromForLoop;
 
-    public Assignment(Node parentNode, String name, boolean isCrossable, Program program, boolean fromForLoop) {
+    public Assignment(Node parentNode, String name, boolean isCrossable, Program program, boolean fromForLoop, boolean startProgram) {
         super(parentNode, name, isCrossable, program);
         this.setMinDepthRequired(1);
         this.fromForLoop = fromForLoop;
-        this.generateRandomChildren();
+        if (startProgram) {
+            this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
+        } else {
+            this.generateRandomChildren();
 
+        }
 
     }
 //assignment: INT IDENTIFIER EQUAL (math_expr [3] | readOrIn [0] )
@@ -33,7 +37,7 @@ public class Assignment extends Node {
         boolean goShort = this.treeRootNode.getMaxDepth() - this.depth == 1;
 
         Random random = new Random();
-        int randInt = fromForLoop? 0 : random.nextInt(3);
+        int randInt = fromForLoop ? 0 : random.nextInt(3);
         switch (randInt) {
             case 0: //1. INT IDENTIFIER EQUAL
                 int index = this.treeRootNode.getVariables().size() + 1;
@@ -43,18 +47,11 @@ public class Assignment extends Node {
                 this.addChild(tn);
                 this.treeRootNode.addVariable(tn);
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
-                if (goShort)// a READ_OR_IN
-                    this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                else // b (math_expr | READ_OR_IN)
-                    switch (random.nextInt(2)) {
-                        case 0:
-                            this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
-                            break;
-                        case 1:
-                            this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                            break;
-                    }
-
+                if (goShort)
+                    this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
+                else { // b (math_expr | READ_OR_IN)
+                    this.addChild(new MathExpression(this, "MATH_EXPRESSION", true, treeRootNode));
+                }
                 break;
             case 1://2. STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
                 this.addChild(new TokenNode(this, "STRING", false, "string ", treeRootNode));
@@ -65,14 +62,8 @@ public class Assignment extends Node {
                 this.treeRootNode.addVariable(tn1);
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
                 Random random2 = new Random();
-                switch (random2.nextInt(2)) {
-                    case 0:
-                        this.addChild(new TokenNode(this, "STRING_VAL", false, "\"test\"", treeRootNode));
-                        break;
-                    case 1:
-                        this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                        break;
-                }
+                this.addChild(new TokenNode(this, "STRING_VAL", false, "\"test\"", treeRootNode));
+
                 break;
             case 2://3. BOOL IDENTIFIER EQUAL
                 this.addChild(new TokenNode(this, "BOOL", false, "boolean ", treeRootNode));
@@ -82,23 +73,13 @@ public class Assignment extends Node {
                 this.addChild(tn2);
                 this.treeRootNode.addVariable(tn2);
                 this.addChild(new TokenNode(this, "EQUAL", false, "=", treeRootNode));
-                if (goShort) // a READ_OR_IN
-                    this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                else //b (bool_val | READ_OR_IN )
-                    switch (random.nextInt(2)) {
-                        case 0:
-                            this.addChild(new BoolVal(this, "BOOL_VAL", true, treeRootNode));
-                            break;
-                        case 1:
-                            this.addChild(new TokenNode(this, "READ_OR_IN", false, "sysIn()", treeRootNode));
-                            break;
-                    }
+
+                this.addChild(new BoolVal(this, "BOOL_VAL", true, treeRootNode));
+
                 break;
         }
 
     }
-
-
 
 
     public boolean isFromForLoop() {

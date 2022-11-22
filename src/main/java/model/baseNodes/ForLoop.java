@@ -22,10 +22,10 @@ public class ForLoop extends Node {
     //for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R; // minDepth: 3
     //this.addChild(new IfStatement(this, "IF_STATEMENT", true, treeRootNode));
     @Override
-    public void generateRandomChildren() { //todo @boro jak ci sie chce mozesz dorobic taka sama flage do comparison i glebiej zeby ten for mial wiecej niz mniej sensu
+    public void generateRandomChildren() {
         this.addChild(new TokenNode(this, "FOR", false, "for", treeRootNode));
         this.addChild(new TokenNode(this, "BRACKET_L", false, "(", treeRootNode));
-        this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode, true));
+        this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode, true, false));
         this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));
         this.addChild(new Comparison(this, "COMPARISON", true, treeRootNode));
         this.addChild(new TokenNode(this, "SEMICOLON", false, ";", treeRootNode));

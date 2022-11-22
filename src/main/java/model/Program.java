@@ -56,7 +56,10 @@ public class Program extends Node {
     @Override
     public void generateRandomChildren() {
 
-        this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode));
+//        this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode, true)); todo
+
+
+        this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode, false));
         addChildrenToSerialisationList();
 
     }
