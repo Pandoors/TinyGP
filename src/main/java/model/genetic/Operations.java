@@ -18,7 +18,7 @@ public class Operations {
 
 
         int randomInt = new Random().nextInt(node.getMaxDepth()/2);
-        while (randomInt > 0 || !(List.of("rootNode", "INSTRUCTION_GENERAL").contains(node.getName())) ) {
+        while (randomInt > 0 || (List.of("rootNode", "INSTRUCTION_GENERAL").contains(node.getName())) ) {
             randomInt--;
             if (node.getChildren().isEmpty()) {
                 break;

@@ -13,10 +13,11 @@ public class Solver {
 
     private final Integer eps = 1;
     private List<Program> programs = new ArrayList<>();
-    public Solver()  {
+
+    public Solver() {
         int reachedFitness = 0;
 
-        for (int i : new IntegerSequence.Range(0, 100, 1)){
+        for (int i : new IntegerSequence.Range(0, 100, 1)) {
             programs.add(new Program(false));
         }
 
@@ -25,45 +26,50 @@ public class Solver {
 
     public void solve() {
         evaluate();
-
     }
 
-    public void evaluate(){
+    public void evaluate() {
         // tournament -> crossover2 best -> negative tournament -> mutation
-        switch (new Random().nextInt(2)){
+        switch (new Random().nextInt(2)) {
             case 0:
                 mutation();
                 break;
             case 1:
-                Program program = Operations.cross(tournament(2).get(0), tournament(2).get(1));
-                for(int i = 0; i< negative_tournament(1).size();  i++){
+                List<Program> tournamentResult = tournament(2);
+                Program program = Operations.cross(tournamentResult.get(0), tournamentResult.get(1));
+                for (int i = 0; i < negative_tournament(1).size(); i++) {
                     programs.set(i, program);
 
-            }
+                }
 
         }
     }
 
-    public List<Program> tournament(int a){
-        List<Program> winners= new ArrayList<>();
-        for(int i = 0; i< a; i++){
+    public List<Program> tournament(int a) {
+        List<Program> winners = new ArrayList<>();
+        for (int i = 0; i < a; i++) {
             winners.add(programs.get(new Random().nextInt(programs.size())));
 
         }
         return winners;
     }
-    public List<Integer> negative_tournament(int a ){
-        List<Integer> winners= new ArrayList<>();
-        for(int i = 0; i< a; i++){
+
+    public List<Integer> negative_tournament(int a) {
+        List<Integer> winners = new ArrayList<>();
+        for (int i = 0; i < a; i++) {
             winners.add(i);
         }
         return winners;
     }
-    public void mutation(){
-        int a = new Random().nextInt(programs.size());
+
+    public void mutation() {
+        int a = run();
         this.programs.set(a, (Program) Operations.mutation(programs.get(a)));
 
     }
 
+    private int run() {
+        return new Random().nextInt(programs.size());
+    }
 
 }
