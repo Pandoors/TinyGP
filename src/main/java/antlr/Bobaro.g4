@@ -82,7 +82,7 @@ EQUAL EQUAL //mD0
 | GREATER_EQUAL //mD0
 | LESS_EQUAL; //mD0
 
-for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R; // minDepth: 2 TODO: add depth
+for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R; // minDepth: 2
 
 instruction: // minDepth:2
 modification SEMICOLON //mD1 + (checking If varialble is declared)
@@ -93,4 +93,3 @@ modification SEMICOLON //mD1 + (checking If varialble is declared)
 instruction_general: (instruction | COMMENT | assignment SEMICOLON)*; // minDepth: 1
 
 modification: IDENTIFIER EQUAL (math_expr | READ_OR_IN); // minDepth: 1
-

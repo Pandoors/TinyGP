@@ -10,7 +10,7 @@ public class Comparison extends Node {
 
     public Comparison(Node parentNode, String name, boolean isCrossable, Program program) {
         super(parentNode, name, isCrossable, program);
-        this.setMinDepthRequired(2); //todo @Boro tyle tu?
+        this.setMinDepthRequired(2);
         this.generateRandomChildren();
     }
 
