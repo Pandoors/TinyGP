@@ -37,7 +37,7 @@ program: instruction_general;
 
 writeOrOut: 'printl(' IDENTIFIER | INT_VAL ')'  SEMICOLON; // minDepth: 1 todo
 
-math_symbol: ADD_ // minDepth = 1
+math_symbol: ADD_ // minDepth  1
 | SUBTRACT_
 | MULTIPLY
 | DIVIDE;
@@ -85,6 +85,6 @@ modification SEMICOLON //mD1 + (checking If varialble is declared)
 | while_loop  // mD3 //todo
 | writeOrOut; //mD1
 
-instruction_general: (instruction)*; // minDepth: 1 //todo
+instruction_general: (instruction)*; // minDepth: 3 //todo
 
 modification: IDENTIFIER EQUAL (math_expr | READ_OR_IN); // minDepth: 1
