@@ -1,16 +1,12 @@
 grammar Bobaro;
 
 INT_VAL: [1-9][0-9]*;
-STRING_VAL: '"' ('\\' ["\\] | ~["\\\r\n])* '"' ;
-BOOL: 'boolean';
-COMMENT: '//'~[\r\n]*;
+//STRING_VAL: '"' ('\\' ["\\] | ~["\\\r\n])* '"' ;
 OR: '||';
 AND: '&&';
 EQUAL: '=';
-INT: 'int';
-TRUE: 'true';
-FALSE: 'false';
-STRING: 'string';
+//TRUE: 'true';
+//FALSE: 'false';
 NOT_EQUAL: '!=';
 GREATER: '>';
 LESS: '<';
@@ -29,7 +25,7 @@ DIVIDE: '/';
 MODULO: '%';
 IF: 'if';
 ELSE: 'else';
-FOR: 'for';
+WHILE: 'while';
 SEMICOLON: ';';
 COMMA: ',';
 READ_OR_IN: 'sysIn()';
@@ -39,15 +35,14 @@ WS   : [ \t\r\n]+ -> skip;
 
 program: instruction_general;
 
-writeOrOut: 'printl(' STRING_VAL ')'  SEMICOLON; // minDepth: 1
+writeOrOut: 'printl(' IDENTIFIER | INT_VAL ')'  SEMICOLON; // minDepth: 1 todo
 
 math_symbol: ADD_ // minDepth = 1
 | SUBTRACT_
 | MULTIPLY
 | DIVIDE;
 
-bool_val: TRUE // minDepth: 1
-| FALSE;
+
 
 num_val: (ADD_ | SUBTRACT_)? INT_VAL // minDepth: 1
 | (ADD_ | SUBTRACT_)? IDENTIFIER;
@@ -56,19 +51,19 @@ math_expr: math_expr math_symbol math_expr // minDepth: 2
 | BRACKET_L math_expr BRACKET_R
 | num_val; // mD1
 
-assignment: INT IDENTIFIER EQUAL (math_expr | READ_OR_IN) // minDepth: 1
-| STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
-| BOOL IDENTIFIER EQUAL (bool_val | READ_OR_IN );
+//assignment: INT IDENTIFIER EQUAL (math_expr | READ_OR_IN) // minDepth: 1 //todo
+//| STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
+//| BOOL IDENTIFIER EQUAL (bool_val | READ_OR_IN );
 
-if_statement: IF logic_condition PARENT_L  (instruction | COMMENT )*  PARENT_R; // minDepth = 4
+if_statement: IF logic_condition PARENT_L  (instruction)*  PARENT_R; // minDepth = 4
 
-logic_condition: BRACKET_L logic_statement (logic_operator logic_statement)* BRACKET_R; // minDepth = 3
+logic_condition: BRACKET_L logic_statement (logic_operator logic_statement)* BRACKET_R; // minDepth = 3 //todo moze nawiasy?
 
 comparison: num_val comparator num_val; //minDepth: 2
 
 logic_statement: // minDepth: 2
 comparison //mD2
-| bool_val; //mD1
+| num_val; //mD1
 
 logic_operator: //minDepth: 1
 OR //mD0
@@ -82,14 +77,14 @@ EQUAL EQUAL //mD0
 | GREATER_EQUAL //mD0
 | LESS_EQUAL; //mD0
 
-for_loop: FOR BRACKET_L assignment SEMICOLON comparison SEMICOLON modification BRACKET_R PARENT_L (instruction | COMMENT )* PARENT_R; // minDepth: 2
+while_loop: WHILE BRACKET_L  logic_condition  BRACKET_R PARENT_L (instruction)* PARENT_R; // minDepth: 2 //todo
 
 instruction: // minDepth:2
 modification SEMICOLON //mD1 + (checking If varialble is declared)
 | if_statement // mD4
-| for_loop  // mD3
+| while_loop  // mD3 //todo
 | writeOrOut; //mD1
 
-instruction_general: (instruction | COMMENT | assignment SEMICOLON)*; // minDepth: 1
+instruction_general: (instruction)*; // minDepth: 1 //todo
 
 modification: IDENTIFIER EQUAL (math_expr | READ_OR_IN); // minDepth: 1
