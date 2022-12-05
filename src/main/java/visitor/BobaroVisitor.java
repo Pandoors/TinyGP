@@ -17,12 +17,6 @@ public interface BobaroVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProgram(BobaroParser.ProgramContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BobaroParser#readOrIn}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitReadOrIn(BobaroParser.ReadOrInContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link BobaroParser#writeOrOut}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -35,12 +29,6 @@ public interface BobaroVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMath_symbol(BobaroParser.Math_symbolContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BobaroParser#bool_val}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBool_val(BobaroParser.Bool_valContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link BobaroParser#num_val}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -51,12 +39,6 @@ public interface BobaroVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMath_expr(BobaroParser.Math_exprContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BobaroParser#assignment}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAssignment(BobaroParser.AssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BobaroParser#if_statement}.
 	 * @param ctx the parse tree
@@ -94,11 +76,11 @@ public interface BobaroVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComparator(BobaroParser.ComparatorContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BobaroParser#for_loop}.
+	 * Visit a parse tree produced by {@link BobaroParser#while_loop}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFor_loop(BobaroParser.For_loopContext ctx);
+	T visitWhile_loop(BobaroParser.While_loopContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BobaroParser#instruction}.
 	 * @param ctx the parse tree

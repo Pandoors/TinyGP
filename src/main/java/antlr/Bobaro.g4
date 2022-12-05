@@ -55,7 +55,7 @@ math_expr: math_expr math_symbol math_expr // minDepth: 2
 //| STRING IDENTIFIER EQUAL (STRING_VAL | READ_OR_IN )
 //| BOOL IDENTIFIER EQUAL (bool_val | READ_OR_IN );
 
-if_statement: IF logic_condition PARENT_L  (instruction)*  PARENT_R; // minDepth = 4
+if_statement: IF logic_condition PARENT_L  instruction_general  PARENT_R; // minDepth = 4
 
 logic_condition: BRACKET_L logic_statement (logic_operator logic_statement)* BRACKET_R; // minDepth = 3 //todo moze nawiasy?
 
@@ -77,7 +77,7 @@ EQUAL EQUAL //mD0
 | GREATER_EQUAL //mD0
 | LESS_EQUAL; //mD0
 
-while_loop: WHILE BRACKET_L  logic_condition  BRACKET_R PARENT_L (instruction)* PARENT_R; // minDepth: 2 //todo
+while_loop: WHILE  logic_condition  PARENT_L instruction_general PARENT_R; // minDepth: 2 //todo
 
 instruction: // minDepth:2
 modification SEMICOLON //mD1 + (checking If varialble is declared)

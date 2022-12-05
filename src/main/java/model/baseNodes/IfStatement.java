@@ -25,17 +25,7 @@ public class IfStatement extends Node {
         this.addChild(new TokenNode(this, "IF", false, "if", treeRootNode));
         this.addChild(new LogicCondition(this, "LOGIC_CONDITION", true, treeRootNode));
         this.addChild(new TokenNode(this, "PARENT_L", false, "{ \n", treeRootNode));
-
-        Random random = new Random();
-        int randomInt = random.nextInt(2);
-
-        while (randomInt != 0) {
-            this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
-
-            random = new Random();
-            randomInt = random.nextInt(2);
-        }
-
+        this.addChild(new InstructionGeneral(this, "INSTRUCTION_GENERAL", true, treeRootNode));
         this.addChild(new TokenNode(this, "PARENT_R", false, "} \n", treeRootNode));
 
     }
