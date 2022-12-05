@@ -31,27 +31,19 @@ public class InstructionGeneral extends Node {
             switch (this.treeRootNode.getMaxDepth() - this.depth) {
                 case 1:
                     // then  we go for just COMMENT
-                    this.addChildrenWithMaxDepth0();
-                    break;
+//                    break;
                 case 2:
                     // then we go just for COMMENT and assigment
                     this.addChildrenWithMaxDepth1();
                     break;
                 default: // then we go for all
-                    this.addChildrenWithMaxDepth2();
+                    this.addChildrenWithMaxDepth1();
                     break;
             }
         }
     }
 
-    private void addChildrenWithMaxDepth0(){
-        Random random = new Random();
-        int randomInt = random.nextInt(2);
-        while (randomInt==0) {
-            this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
-            randomInt = random.nextInt(2);
-        }
-    }
+
 
     private void addChildrenWithMaxDepth1(){
         Random random = new Random();
@@ -59,39 +51,14 @@ public class InstructionGeneral extends Node {
         while(randomInt!=2) {
             switch (randomInt) {
                 case 0:
-                    this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
-                    break;
                 case 1:
-                    this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
+                    this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
                     break;
                 case 2:
                     break;
             }
             randomInt = random.nextInt(3);
             if(randomInt==2)
-                break;
-        }
-    }
-    private void addChildrenWithMaxDepth2(){
-        Random random = new Random();
-        int randomInt = random.nextInt(4);
-        while(randomInt!=3) {
-            switch (randomInt) {
-                case 0:
-                    this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
-                    break;
-                case 1:
-                    this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
-                    break;
-                case 2:
-                    this.addChild(new Assignment(this, "ASSIGNMENT", true, treeRootNode, false));
-                    this.addChild(new TokenNode(this, "SEMICOLON", false, ";\n", treeRootNode));
-                    break;
-                case 3:
-                    break;
-            }
-            randomInt = random.nextInt(4);
-            if(randomInt==3)
                 break;
         }
     }
