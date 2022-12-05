@@ -35,7 +35,7 @@ WS   : [ \t\r\n]+ -> skip;
 
 program: instruction_general;
 
-writeOrOut: 'printl(' IDENTIFIER | INT_VAL ')'  SEMICOLON; // minDepth: 1 todo
+writeOrOut: 'printl(' (IDENTIFIER | INT_VAL) ')'  SEMICOLON; // minDepth: 1 todo
 
 math_symbol: ADD_ // minDepth  1
 | SUBTRACT_
