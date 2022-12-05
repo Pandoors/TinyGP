@@ -32,8 +32,6 @@ public class IfStatement extends Node {
         while (randomInt != 0) {
             this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));
 
-            this.addChild(new TokenNode(this, "COMMENT", false, "//test \n", treeRootNode));
-
             random = new Random();
             randomInt = random.nextInt(2);
         }

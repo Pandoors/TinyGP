@@ -74,7 +74,7 @@ public class Instruction extends Node {
             case 0:
                 this.addChildrenWithMaxDepth1();
             case 1:
-                this.addChild(new ForLoop(this, "FOR_LOOP", true, treeRootNode));
+                this.addChild(new WhileLoop(this, "WHILE_LOOP", true, treeRootNode));
                 break;
         }
     }
@@ -83,7 +83,7 @@ public class Instruction extends Node {
             case 0:
                 this.addChildrenWithMaxDepth1();
             case 1:
-                this.addChild(new ForLoop(this, "FOR_LOOP", true, treeRootNode));
+                this.addChild(new WhileLoop(this, "WHILE_LOOP", true, treeRootNode));
                 break;
             case 2:
                 this.addChild(new IfStatement(this, "IF_STATEMENT", true, treeRootNode));

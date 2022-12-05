@@ -40,7 +40,7 @@ public class LogicStatement extends Node {
                 this.addChild(new Comparison(this, "COMPARISON", false, treeRootNode));
                 break;
             case 1:
-                this.addChild(new BoolVal(this, "BOOL_VAL", false, treeRootNode));
+                this.addChild(new NumVal(this, "NUM_VAL", false, treeRootNode));
                 break;
         }
     }
