@@ -1,5 +1,6 @@
 package visitor.own;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
 import visitor.BobaroBaseVisitor;
 import visitor.BobaroParser;
 
@@ -20,7 +21,22 @@ public class BobaroVisitor  extends BobaroBaseVisitor<String> {
 
     @Override
     public String visitMath_symbol(BobaroParser.Math_symbolContext ctx) {
-        return super.visitMath_symbol(ctx);
+        StringBuilder sb = new StringBuilder();
+
+        if (ctx.ADD_() != null) {
+            sb.append(ctx.ADD_());
+
+        } else if (ctx.SUBTRACT_() != null) {
+            sb.append(ctx.SUBTRACT_());
+
+        } else if (ctx.MULTIPLY() != null) {
+            sb.append(ctx.MULTIPLY());
+
+        } else if (ctx.DIVIDE() != null) {
+            sb.append(ctx.DIVIDE());
+
+        }
+        return sb.toString();
     }
 
     @Override
@@ -50,27 +66,70 @@ public class BobaroVisitor  extends BobaroBaseVisitor<String> {
 
     @Override
     public String visitLogic_condition(BobaroParser.Logic_conditionContext ctx) {
-        return super.visitLogic_condition(ctx);
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(ctx.BRACKET_L());
+        if (ctx.logic_statement().size() == 1) {
+            sb.append(visitLogic_statement(ctx.logic_statement().get(0)));
+        } else if (ctx.logic_statement().size() > 1) {
+            sb.append(visitLogic_statement(ctx.logic_statement().get(0)));
+            for (int i = 0; i < ctx.logic_operator().size(); i++) {
+                sb.append(visitLogic_operator(ctx.logic_operator().get(i)));
+                sb.append(" " + visitLogic_statement(ctx.logic_statement().get(i+1)));
+            }
+        }
+        sb.append(ctx.BRACKET_R());
+        return sb.toString();
     }
 
     @Override
     public String visitComparison(BobaroParser.ComparisonContext ctx) {
-        return super.visitComparison(ctx);
+      StringBuilder sb = new StringBuilder();
+        sb.append(visitNum_val(ctx.num_val().get(0)));
+        sb.append(" " + visitComparator(ctx.comparator()));
+        sb.append(" " + visitNum_val(ctx.num_val().get(1)) + " ");
+        return sb.toString();
     }
 
     @Override
     public String visitLogic_statement(BobaroParser.Logic_statementContext ctx) {
-        return super.visitLogic_statement(ctx);
+        StringBuilder sb = new StringBuilder();
+        if (ctx.comparison() != null) sb.append(visitComparison(ctx.comparison()));
+        else if (ctx.num_val() != null) sb.append(visitNum_val(ctx.num_val()));
+
+        return sb.toString();
     }
 
     @Override
     public String visitLogic_operator(BobaroParser.Logic_operatorContext ctx) {
-        return super.visitLogic_operator(ctx);
+        StringBuilder sb = new StringBuilder();
+        if (ctx.AND() != null) sb.append(ctx.AND());
+        else if (ctx.OR() != null) sb.append(ctx.OR());
+
+        return sb.toString();
     }
 
     @Override
     public String visitComparator(BobaroParser.ComparatorContext ctx) {
-        return super.visitComparator(ctx);
+        StringBuilder sb = new StringBuilder();
+
+        if (ctx.EQUAL() != null) {
+            for (TerminalNode tn : ctx.EQUAL()) {
+                sb.append(tn);
+            }
+        } else if (ctx.NOT_EQUAL() != null) {
+            sb.append(ctx.NOT_EQUAL());
+        } else if (ctx.GREATER() != null) {
+            sb.append(ctx.GREATER());
+        } else if (ctx.LESS() != null) {
+            sb.append(ctx.LESS());
+        } else if (ctx.GREATER_EQUAL() != null) {
+            sb.append(ctx.GREATER_EQUAL());
+        } else if (ctx.LESS_EQUAL() != null) {
+            sb.append(ctx.LESS_EQUAL());
+        }
+
+        return sb.toString();
     }
 
     @Override
@@ -88,12 +147,33 @@ public class BobaroVisitor  extends BobaroBaseVisitor<String> {
 
     @Override
     public String visitInstruction(BobaroParser.InstructionContext ctx) {
-        return super.visitInstruction(ctx);
+
+        StringBuilder sb = new StringBuilder();
+        //sb.append(ctx.SEMICOLON() + "\n");
+
+        if (ctx.modification() != null){
+            sb.append(visitModification(ctx.modification()));
+            sb.append(ctx.SEMICOLON() + "\n");
+        } else if (ctx.if_statement() != null){
+            sb.append(visitIf_statement(ctx.if_statement()));
+        } else if(ctx.while_loop() != null){
+            sb.append(ctx.while_loop());
+        } else if (ctx.writeOrOut() != null){
+            sb.append(visitWriteOrOut(ctx.writeOrOut()));
+        }
+
+        return sb.toString();
+
     }
 
     @Override
     public String visitInstruction_general(BobaroParser.Instruction_generalContext ctx) {
-        return super.visitInstruction_general(ctx);
+
+        StringBuilder sb = new StringBuilder();
+        for (BobaroParser.InstructionContext ic : ctx.instruction()){
+            sb.append(visitInstruction(ic));
+        }
+        return sb.toString();
     }
 
     @Override
