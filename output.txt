@@ -1,0 +1,2 @@
+#include <iostream>;#include <fstream>; using namespace std; int main(int argc, char *argv[]) {)int rotations = 0; int i=0;  ofstream myfile; output.open("output.txt");int max = argv[0];x=2 ;
+output.close();return 0;}

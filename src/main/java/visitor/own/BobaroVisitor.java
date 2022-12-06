@@ -79,17 +79,18 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
     public String visitMath_expr(BobaroParser.Math_exprContext ctx) {
         StringBuilder sb = new StringBuilder();
 
-        if (ctx.math_symbol() != null) {
-            sb.append(visitMath_expr(ctx.math_expr(0)));
-            sb.append(visitMath_symbol(ctx.math_symbol()));
-            sb.append(visitMath_expr(ctx.math_expr(1)));
-        } else if (ctx.math_expr() != null) {
-            sb.append(ctx.BRACKET_L());
-            sb.append(visitMath_expr(ctx.math_expr(0)));
-            sb.append(ctx.BRACKET_R());
-        } else {
-            sb.append(visitNum_val(ctx.num_val()));
+        if (ctx.math_expr().size() == 2) {
+            sb.append(visitMath_expr(ctx.math_expr().get(0)));
+            sb.append(visitMath_symbol(ctx.math_symbol()) + " ");
+            sb.append(visitMath_expr(ctx.math_expr().get(1)));
+        } else if (ctx.num_val() != null) {
+            sb.append(visitNum_val(ctx.num_val()) + " ");
+        } else if (ctx.BRACKET_L() != null) {
+            sb.append(ctx.BRACKET_L() + " ");
+            sb.append(visitMath_expr(ctx.math_expr().get(0)));
+            sb.append(ctx.BRACKET_R() + " ");
         }
+
 
         return sb.toString();
     }
