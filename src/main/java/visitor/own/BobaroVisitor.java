@@ -9,7 +9,7 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
     @Override
     public String visitProgram(BobaroParser.ProgramContext ctx) {
         StringBuilder sb = new StringBuilder();
-        sb.append("#include <iostream>;#include <fstream>; using namespace std; int main(int argc, char *argv[]) {)");
+        sb.append("#include <iostream>;#include <fstream>; using namespace std; int main(int argc, char *argv[]) {");
         sb.append("int rotations = 0; int i=0;  ofstream myfile; output.open(\"output.txt\");");
 
         sb.append("int max = argv[0];");
