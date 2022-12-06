@@ -10,7 +10,7 @@ import java.util.Random;
 
 
 public class Solver {
-
+    private int epoch=0;
     private final Integer eps = 1;
     private List<Program> programs = new ArrayList<>();
 
@@ -72,4 +72,14 @@ public class Solver {
         return new Random().nextInt(programs.size());
     }
 
+    private void calculateEvaluation() {
+
+        for (Program program : this.programs) {
+            String program_txt = program.getTreeProgTxt();
+        }
+
+    }
+    private void printEpoch(){
+        System.out.println("Epoch: " + epoch++ + "score: ");
+    }
 }

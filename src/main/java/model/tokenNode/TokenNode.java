@@ -30,7 +30,10 @@ public class TokenNode extends Node {
     public void print() {
         System.out.print(token);
     }
-
+    @Override
+    public String getTreeProgTxt() {
+        return token;
+    }
     @Override
     protected void addChildrenToSerialisationList(){
         this.treeRootNode.appendAllNodes(this);

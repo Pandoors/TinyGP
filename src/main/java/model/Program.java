@@ -12,7 +12,7 @@ import java.util.Random;
 public class Program extends Node {
 
     protected List<TokenNode> variables;
-
+    private Double evaluateResult;
     private int maxReachedDepth;
 
     public void setMaxReachedDepth(int maxReachedDepth) {
@@ -22,7 +22,7 @@ public class Program extends Node {
     public Program() {
         super();
         this.variables = new ArrayList<>();
-
+        this.evaluateResult = 0d;
         this.setDepth(0);
         this.setMaxDepth(10);
 
@@ -35,6 +35,7 @@ public class Program extends Node {
     public Program(boolean print){
         super();
         this.variables = new ArrayList<>();
+        this.evaluateResult = 0d;
 
         this.setDepth(0);
         this.setMaxDepth(10);
@@ -72,6 +73,14 @@ public class Program extends Node {
         }
     }
 
+    @Override
+    public String getTreeProgTxt() {
+        StringBuilder sb = new StringBuilder();
+        for (Node child : this.getChildren()) {
+            sb.append(child.getTreeProgTxt());
+        }
+        return sb.toString();
+    }
 
     public List<TokenNode> getVariables() {
         return variables;
@@ -93,7 +102,12 @@ public class Program extends Node {
         return maxReachedDepth < this.maxDepth;
     }
 
+    public Double getEvaluateResult() {
+        return evaluateResult;
+    }
 
-
+    public void setEvaluateResult(Double evaluateResult) {
+        this.evaluateResult = evaluateResult;
+    }
 }
 

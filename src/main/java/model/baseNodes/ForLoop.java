@@ -13,7 +13,14 @@ public class ForLoop extends Node {
         this.setMinDepthRequired(3);
         this.generateRandomChildren();
     }
-
+    @Override
+    public String getTreeProgTxt() {
+        StringBuilder sb = new StringBuilder();
+        for (Node child : this.getChildren()) {
+            sb.append(child.getTreeProgTxt());
+        }
+        return sb.toString();
+    }
     @Override
     protected void addChild(Node child) {
         this.getChildren().add(child);

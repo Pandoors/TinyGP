@@ -29,7 +29,14 @@ public class Comparison extends Node {
         this.addChild(new NumVal(this, "NUM_VAL", false, treeRootNode));
 
     }
-
+    @Override
+    public String getTreeProgTxt() {
+        StringBuilder sb = new StringBuilder();
+        for (Node child : this.getChildren()) {
+            sb.append(child.getTreeProgTxt());
+        }
+        return sb.toString();
+    }
     @Override
     public void print() {
         for (Node child : this.getChildren()) {

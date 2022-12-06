@@ -90,7 +90,14 @@ public class Instruction extends Node {
                 break;
         }
     }
-
+    @Override
+    public String getTreeProgTxt() {
+        StringBuilder sb = new StringBuilder();
+        for (Node child : this.getChildren()) {
+            sb.append(child.getTreeProgTxt());
+        }
+        return sb.toString();
+    }
     @Override
     public void print() {
         for (Node child : this.getChildren()) {

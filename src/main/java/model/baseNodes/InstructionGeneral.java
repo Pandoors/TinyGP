@@ -43,7 +43,14 @@ public class InstructionGeneral extends Node {
         }
     }
 
-
+    @Override
+    public String getTreeProgTxt() {
+        StringBuilder sb = new StringBuilder();
+        for (Node child : this.getChildren()) {
+            sb.append(child.getTreeProgTxt());
+        }
+        return sb.toString();
+    }
 
     private void addChildrenWithMaxDepth1(){
         Random random = new Random();

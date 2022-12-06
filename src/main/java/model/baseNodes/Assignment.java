@@ -33,7 +33,7 @@ public class Assignment extends Node {
         boolean goShort = this.treeRootNode.getMaxDepth() - this.depth == 1;
 
         Random random = new Random();
-        int randInt = fromForLoop? 0 : random.nextInt(3);
+        int randInt = fromForLoop ? 0 : random.nextInt(3);
         switch (randInt) {
             case 0: //1. INT IDENTIFIER EQUAL
                 int index = this.treeRootNode.getVariables().size() + 1;
@@ -99,8 +99,6 @@ public class Assignment extends Node {
     }
 
 
-
-
     public boolean isFromForLoop() {
         return fromForLoop;
     }
@@ -111,5 +109,14 @@ public class Assignment extends Node {
             child.print();
         }
 
+    }
+
+    @Override
+    public String getTreeProgTxt() {
+        StringBuilder sb = new StringBuilder();
+        for (Node child : this.getChildren()) {
+            sb.append(child.getTreeProgTxt());
+        }
+        return sb.toString();
     }
 }

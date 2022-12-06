@@ -29,7 +29,14 @@ public class IfStatement extends Node {
         this.addChild(new TokenNode(this, "PARENT_R", false, "} \n", treeRootNode));
 
     }
-
+    @Override
+    public String getTreeProgTxt() {
+        StringBuilder sb = new StringBuilder();
+        for (Node child : this.getChildren()) {
+            sb.append(child.getTreeProgTxt());
+        }
+        return sb.toString();
+    }
     @Override
     public void print() {
         for (Node child : this.getChildren()) {

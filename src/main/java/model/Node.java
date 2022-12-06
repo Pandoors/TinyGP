@@ -47,6 +47,7 @@ public abstract class Node {
     protected abstract void addChild(Node child);
     public abstract void generateRandomChildren();
     public abstract void print();
+    public abstract String getTreeProgTxt();
 
     public Node getParentNode() {
         return parentNode;
