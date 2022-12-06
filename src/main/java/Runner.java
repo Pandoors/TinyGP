@@ -3,14 +3,20 @@ import definition.TinyGpExtended;
 import model.Node;
 import model.Program;
 import model.genetic.Operations;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import utils.Evaluator;
 import utils.ParserXLSX;
+import visitor.BobaroLexer;
+import visitor.BobaroParser;
+import visitor.own.BobaroVisitor;
 
 import java.io.*;
 
 public class Runner {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String fname = null;
         String log = null;
 
@@ -19,9 +25,23 @@ public class Runner {
             log = args[0];
         }
 
-        Program p1 = new Program(false);
+//        Program p1 = new Program(false);
 
-        Operations.mutation(p1);
+//        Operations.mutation(p1);
+
+
+
+        CharStream in = CharStreams.fromFileName("/Users/bartosz/IdeaProjects/TinyGP/src/main/resources/example_1.txt");
+        BobaroLexer lexer = new BobaroLexer(in);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        BobaroParser parser = new BobaroParser(tokens);
+
+        String str = new BobaroVisitor().visit(parser.program());
+        System.out.println(str);
+
+        try (PrintWriter out = new PrintWriter("output.txt")) {
+            out.println(str);
+        }
 
     }
 
