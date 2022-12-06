@@ -16,7 +16,15 @@ public class BobaroVisitor  extends BobaroBaseVisitor<String> {
 
     @Override
     public String visitWriteOrOut(BobaroParser.WriteOrOutContext ctx) {
-        return super.visitWriteOrOut(ctx);
+        StringBuilder sb = new StringBuilder();
+
+        if(ctx.IDENTIFIER() != null) {
+            sb.append("cout<< " + ctx.IDENTIFIER() + "<< endl" + ctx.SEMICOLON());
+        }else if(ctx.INT_VAL() != null) {
+            sb.append("cout<< " + ctx.INT_VAL() + "<< endl" + ctx.SEMICOLON());
+        }
+        return sb.toString();
+
     }
 
     @Override
@@ -41,12 +49,45 @@ public class BobaroVisitor  extends BobaroBaseVisitor<String> {
 
     @Override
     public String visitNum_val(BobaroParser.Num_valContext ctx) {
-        return super.visitNum_val(ctx);
+        StringBuilder sb = new StringBuilder();
+
+        if(ctx.INT_VAL() != null) {
+            if(ctx.ADD_() != null) {
+                sb.append(ctx.ADD_());
+            }else if(ctx.SUBTRACT_() != null) {
+                sb.append(ctx.SUBTRACT_());
+            }
+            sb.append(ctx.INT_VAL());
+        }else if (ctx.IDENTIFIER() != null) {
+            if(ctx.ADD_() != null) {
+                sb.append(ctx.ADD_());
+            }else if(ctx.SUBTRACT_() != null) {
+                sb.append(ctx.SUBTRACT_());
+            }
+            sb.append(ctx.IDENTIFIER());
+        }
+
+        return sb.toString();
     }
 
     @Override
     public String visitMath_expr(BobaroParser.Math_exprContext ctx) {
-        return super.visitMath_expr(ctx);
+        StringBuilder sb = new StringBuilder();
+
+        if(ctx.math_symbol() != null) {
+            sb.append(visitMath_expr(ctx.math_expr(0)));
+            sb.append(visitMath_symbol(ctx.math_symbol()));
+            sb.append(visitMath_expr(ctx.math_expr(1)));
+        }else if(ctx.math_expr() != null) {
+            sb.append(ctx.BRACKET_L());
+            sb.append(visitMath_expr(ctx.math_expr(0)));
+            sb.append(ctx.BRACKET_R());
+        }
+        else {
+            sb.append(visitNum_val(ctx.num_val()));
+        }
+
+        return sb.toString();
     }
 
     @Override
