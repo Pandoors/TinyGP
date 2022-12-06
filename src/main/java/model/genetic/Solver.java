@@ -79,6 +79,9 @@ public class Solver {
         }
 
     }
+
+//    private void saveAndCompile
+
     private void printEpoch(){
         System.out.println("Epoch: " + epoch++ + "score: ");
     }
