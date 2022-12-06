@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -35,6 +36,7 @@ public class Solver {
 
     public void solve() {
         evaluate();
+        saveAndCompile(programs.get(0), " 0 0 0 0 0 0 0 0 ");
     }
 
     public void evaluate() {
@@ -110,15 +112,15 @@ public class Solver {
                 e.printStackTrace();
             }
 
-            List<String> list = new ArrayList<String>();
-            list.add("notepad.exe");
-            list.add("xyz.txt");
+            List<String> commands = Arrays.asList(
+                    "gcc -o program program.c\n",
+                    "./program.out " + input + "\n");
 
             // create the process
-            ProcessBuilder build = new ProcessBuilder(list);
+            ProcessBuilder build = new ProcessBuilder(commands);
+            Process process = build.start();
+            process.waitFor();
 
-            // checking the command in list
-            System.out.println("command: " + build.command());
             }catch (Exception e){
             e.printStackTrace();
         }
