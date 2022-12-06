@@ -9,10 +9,13 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
     @Override
     public String visitProgram(BobaroParser.ProgramContext ctx) {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n int rotations = 0; \n");
-        sb.append("\n int max = 100; \n");
+        sb.append("#include <iostream>;#include <fstream>; using namespace std; int main(int argc, char *argv[]) {)");
+        sb.append("int rotations = 0; int i=0;  ofstream myfile; output.open(\"output.txt\");");
+
+        sb.append("int max = argv[0];");
         sb.append(visitInstruction_general(ctx.instruction_general()));
 
+        sb.append("output.close();return 0;}");
         return sb.toString();
     }
 
@@ -21,9 +24,9 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
         StringBuilder sb = new StringBuilder();
 
         if (ctx.IDENTIFIER() != null) {
-            sb.append("cout<< " + ctx.IDENTIFIER() + "<< endl" + ctx.SEMICOLON());
+            sb.append("output<< " + ctx.IDENTIFIER() + "<< endl" + ctx.SEMICOLON());
         } else if (ctx.INT_VAL() != null) {
-            sb.append("cout<< " + ctx.INT_VAL() + "<< endl" + ctx.SEMICOLON());
+            sb.append("output<< " + ctx.INT_VAL() + "<< endl" + ctx.SEMICOLON());
         }
         return sb.toString();
 
@@ -182,6 +185,7 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
         sb.append(visitLogic_condition(ctx.logic_condition()));
         sb.append(ctx.PARENT_L() + "\n");
         sb.append(visitInstruction_general(ctx.instruction_general()));
+        sb.append("if(rotatitons>max)break;");
         sb.append(ctx.PARENT_R() + "\n");
 
         return sb.toString();
@@ -227,8 +231,10 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
             sb.append(ctx.EQUAL());
             sb.append(visitMath_expr(ctx.math_expr()));
         } else if (ctx.READ_OR_IN() != null) {
-            sb.append("cin>>");
+            sb.append("if(++i>=argc){output<<\"ERROR\"<<endl;output.close();return 0;");
             sb.append(ctx.IDENTIFIER());
+            sb.append(ctx.EQUAL());
+            sb.append("argv[i]");
         }
 
         return sb.toString();

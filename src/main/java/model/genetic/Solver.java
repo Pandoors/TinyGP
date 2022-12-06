@@ -2,8 +2,17 @@ package model.genetic;
 
 import lombok.NoArgsConstructor;
 import model.Program;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.commons.math3.util.IntegerSequence;
+import visitor.BobaroLexer;
+import visitor.BobaroParser;
+import visitor.own.BobaroVisitor;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -75,12 +84,49 @@ public class Solver {
     private void calculateEvaluation() {
 
         for (Program program : this.programs) {
-            String program_txt = program.getTreeProgTxt();
+            ;
         }
 
     }
 
-//    private void saveAndCompile
+    private void saveAndCompile(Program program, String input)  {
+        try{
+
+            String program_txt = program.getTreeProgTxt();
+
+            //string to charsteam
+            CharStream charStream = CharStreams.fromString(program_txt);
+            BobaroLexer lexer = new BobaroLexer(charStream);
+
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            BobaroParser parser = new BobaroParser(tokens);
+
+            String str = new BobaroVisitor().visit(parser.program());
+            System.out.println(str);
+
+            try (PrintWriter out = new PrintWriter("program.c")) {
+                out.println(str);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            List<String> list = new ArrayList<String>();
+            list.add("notepad.exe");
+            list.add("xyz.txt");
+
+            // create the process
+            ProcessBuilder build = new ProcessBuilder(list);
+
+            // checking the command in list
+            System.out.println("command: " + build.command());
+            }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
+    }
 
     private void printEpoch(){
         System.out.println("Epoch: " + epoch++ + "score: ");
