@@ -2,6 +2,7 @@ package model.genetic;
 
 import lombok.NoArgsConstructor;
 import model.Program;
+import model.tokenNode.TokenNode;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -110,8 +111,27 @@ public class Solver {
 
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             BobaroParser parser = new BobaroParser(tokens);
-
             String str = new BobaroVisitor().visit(parser.program());
+            StringBuilder sb = new StringBuilder();
+            if(program.getVariables()!=null && !program.getVariables().isEmpty()) {
+
+                sb.append("int ");
+                boolean first = true;
+                for (TokenNode tn : program.getVariables()) {
+                    if(!first){
+                        sb.append(", ");
+                    }
+                    sb.append(tn.getToken());
+                    first=false;
+                }
+                sb.append(";");
+            }
+            String toInsert = sb.toString();
+            String searchPhrase = "char *argv[]) {";
+            int pos_str = str.indexOf(searchPhrase)+searchPhrase.length();
+            str = new StringBuilder(str).insert(pos_str, toInsert).toString();
+
+
             System.out.println("\n ------- program txt in Cpp -------\n");
             System.out.println(str);
             System.out.println("\n ------- program txt in Cpp end -------\n");
