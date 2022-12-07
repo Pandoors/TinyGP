@@ -25,23 +25,23 @@ public class Runner {
             log = args[0];
         }
 
-//        Program p1 = new Program(false);
+        Program p1 = new Program(false);
 
-//        Operations.mutation(p1);
+        Operations.mutation(p1);
 
 
 
-        CharStream in = CharStreams.fromFileName("/Users/bartosz/IdeaProjects/TinyGP/src/main/resources/example_1.txt");
-        BobaroLexer lexer = new BobaroLexer(in);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        BobaroParser parser = new BobaroParser(tokens);
-
-        String str = new BobaroVisitor().visit(parser.program());
-        System.out.println(str);
-
-        try (PrintWriter out = new PrintWriter("output.txt")) {
-            out.println(str);
-        }
+//        CharStream in = CharStreams.fromFileName("/Users/bartosz/IdeaProjects/TinyGP/src/main/resources/example_1.txt");
+//        BobaroLexer lexer = new BobaroLexer(in);
+//        CommonTokenStream tokens = new CommonTokenStream(lexer);
+//        BobaroParser parser = new BobaroParser(tokens);
+//
+//        String str = new BobaroVisitor().visit(parser.program());
+//        System.out.println(str);
+//
+//        try (PrintWriter out = new PrintWriter("output.txt")) {
+//            out.println(str);
+//        }
 
     }
 

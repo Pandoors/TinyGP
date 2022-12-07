@@ -24,9 +24,9 @@ public class WhileLoop extends Node {
     @Override
     public void generateRandomChildren() {
         this.addChild(new TokenNode(this, "WHILE", false, "while", treeRootNode));
-        this.addChild(new TokenNode(this, "BRACKET_L", false, "(", treeRootNode));
+//        this.addChild(new TokenNode(this, "BRACKET_L", false, "(", treeRootNode));
         this.addChild(new LogicCondition(this, "LOGIC_CONDITION", true, treeRootNode));
-        this.addChild(new TokenNode(this, "BRACKET_R", false, ")", treeRootNode));
+//        this.addChild(new TokenNode(this, "BRACKET_R", false, ")", treeRootNode));
         this.addChild(new TokenNode(this, "PARENT_L", false, "{ \n", treeRootNode));
 
         Random random = new Random();
