@@ -97,27 +97,30 @@ public class Solver {
 
     private void saveAndCompile(Program program, String input)  {
         try{
-
-//            String program_txt = program.getTreeProgTxt();
-//
-//            //string to charsteam
+            String program_txt = program.getTreeProgTxt();
+            System.out.println("\n ------- program txt in Bobaro-------\n");
+            System.out.println(program_txt);
+            System.out.println("\n ------- program txt end -------\n");
+            //string to charsteam
 //            Stream<Character> charStream = program_txt.chars().mapToObj(c -> (char) c);
-//
-//
-//            CharStream charStream1 = CharStreams.fromString(program_txt);
-//            BobaroLexer lexer = new BobaroLexer(charStream1);
-//
-//            CommonTokenStream tokens = new CommonTokenStream(lexer);
-//            BobaroParser parser = new BobaroParser(tokens);
-//
-//            String str = new BobaroVisitor().visit(parser.program());
-//            System.out.println(str);
-//
-//            try (PrintWriter out = new PrintWriter("/Users/bartosz/IdeaProjects/TinyGP/program.cpp")) {
-//                out.println(str);
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
+
+
+            CharStream charStream1 = CharStreams.fromString(program_txt);
+            BobaroLexer lexer = new BobaroLexer(charStream1);
+
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            BobaroParser parser = new BobaroParser(tokens);
+
+            String str = new BobaroVisitor().visit(parser.program());
+            System.out.println("\n ------- program txt in Cpp -------\n");
+            System.out.println(str);
+            System.out.println("\n ------- program txt in Cpp end -------\n");
+
+            try (PrintWriter out = new PrintWriter("/Users/bartosz/IdeaProjects/TinyGP/program.cpp")) {
+                out.println(str);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
             ProcessBuilder build =
                     new ProcessBuilder("g++", "/Users/bartosz/IdeaProjects/TinyGP/program.cpp");

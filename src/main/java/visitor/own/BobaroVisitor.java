@@ -10,7 +10,7 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
     public String visitProgram(BobaroParser.ProgramContext ctx) {
         StringBuilder sb = new StringBuilder();
         sb.append("#include <iostream>\n #include <fstream>\nusing namespace std; int main(int argc, char *argv[]) {");
-        sb.append("int rotations = 0; int i=0;  ofstream myfile; output.open(\"output.txt\");");
+        sb.append("int rotations = 0; int i=0;  ofstream output; output.open(\"output.txt\");");
 
         sb.append("int max = argv[0];");
         sb.append(visitInstruction_general(ctx.instruction_general()));
@@ -204,7 +204,7 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
         } else if (ctx.if_statement() != null) {
             sb.append(visitIf_statement(ctx.if_statement()));
         } else if (ctx.while_loop() != null) {
-            sb.append(ctx.while_loop());
+            sb.append(visitWhile_loop(ctx.while_loop()));
         } else if (ctx.writeOrOut() != null) {
             sb.append(visitWriteOrOut(ctx.writeOrOut()));
         }
