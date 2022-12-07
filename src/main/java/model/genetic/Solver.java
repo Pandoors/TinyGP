@@ -2,6 +2,7 @@ package model.genetic;
 
 import lombok.NoArgsConstructor;
 import model.Program;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -17,12 +18,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 
 public class Solver {
     private int epoch=0;
     private final Integer eps = 1;
     private List<Program> programs = new ArrayList<>();
+
+
 
     public Solver() {
         int reachedFitness = 0;
@@ -97,8 +101,11 @@ public class Solver {
             String program_txt = program.getTreeProgTxt();
 
             //string to charsteam
-            CharStream charStream = CharStreams.fromString(program_txt);
-            BobaroLexer lexer = new BobaroLexer(charStream);
+            Stream<Character> charStream = program_txt.chars().mapToObj(c -> (char) c);
+
+
+            CharStream charStream1 = CharStreams.fromString(program_txt);
+            BobaroLexer lexer = new BobaroLexer(charStream1);
 
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             BobaroParser parser = new BobaroParser(tokens);
@@ -106,15 +113,15 @@ public class Solver {
             String str = new BobaroVisitor().visit(parser.program());
             System.out.println(str);
 
-            try (PrintWriter out = new PrintWriter("program.c")) {
+            try (PrintWriter out = new PrintWriter("/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp")) {
                 out.println(str);
             }catch (Exception e){
                 e.printStackTrace();
             }
 
             List<String> commands = Arrays.asList(
-                    "gcc -o program program.c\n",
-                    "./program.out " + input + "\n");
+                    "g++ /Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp\n",
+                    "./Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/a.out " + input + "\n");
 
             // create the process
             ProcessBuilder build = new ProcessBuilder(commands);
