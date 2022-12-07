@@ -1,19 +1,19 @@
 #include <iostream>
-#include <fstream>
-using namespace std;
-int main(int argc, char *argv[]) {
-int rotations = 0;
-int i=0;
-ofstream myfile; //zamienic na output
-output.open("output.txt"); //todo nie ma zmiennej output
-int max = argv[0];
-if(407413629&& 1462388317|| 463174206){
-x1=( x1 ); //todo przed zrobieniem modifaction jakos trzeba sprawdzac czy zmienna jest zadleklarowana jak nie to zadeklarowac
-[113 117 69 112 117 30] //todo zjebany visitor
+ #include <fstream>
+using namespace std; int main(int argc, char *argv[]) {
+int x2;
+int rotations = 0; int i=0;  ofstream output; output.open("output.txt");int max = argv[0];while(-306933518  -1128518727 || 946562379|| -1722924627){
+if(-226767174  145994749 ){
 }
-if(-x1 == 448878166 || x1){
-}
-if(1258250453|| -x1  2146591434 || x1  600992363 ){
-}
-output.close();
-return 0;}
+output<< 135559825<< endl;while(1830929811  -725935099 ){
+while(1193140306  -661175365 && -14367784&& 1565854982){
+
+ if(rotatitons>max)break;}
+
+ if(rotatitons>max)break;}
+x2=12
+ if(rotatitons>max)break;}
+while(1042650348 == -1798140335 || 898312920  -1129301666 || 370921298  -1930085901 || 1580314589&& 981987951){
+
+ if(rotatitons>max)break;}
+output.close();return 0;}

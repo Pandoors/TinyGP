@@ -109,7 +109,7 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
         return sb.toString();
 
     }
-
+//logic_condition: BRACKET_L logic_statement (logic_operator logic_statement)* BRACKET_R; // minDepth = 3 //todo moze nawiasy?
     @Override
     public String visitLogic_condition(BobaroParser.Logic_conditionContext ctx) {
         StringBuilder sb = new StringBuilder();
@@ -164,15 +164,15 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
                 sb.append(tn);
             }
         } else if (ctx.NOT_EQUAL() != null) {
-            sb.append(ctx.NOT_EQUAL());
+            sb.append("!=");
         } else if (ctx.GREATER() != null) {
-            sb.append(ctx.GREATER());
+            sb.append(">");
         } else if (ctx.LESS() != null) {
-            sb.append(ctx.LESS());
+            sb.append("<");
         } else if (ctx.GREATER_EQUAL() != null) {
-            sb.append(ctx.GREATER_EQUAL());
+            sb.append(">=");
         } else if (ctx.LESS_EQUAL() != null) {
-            sb.append(ctx.LESS_EQUAL());
+            sb.append("<=");
         }
 
         return sb.toString();
@@ -186,7 +186,7 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
         sb.append(visitLogic_condition(ctx.logic_condition()));
         sb.append(ctx.PARENT_L() + "\n");
         sb.append(visitInstruction_general(ctx.instruction_general()));
-        sb.append("if(rotatitons>max)break;");
+        sb.append("\n if(rotatitons>max)break;");
         sb.append(ctx.PARENT_R() + "\n");
 
         return sb.toString();
