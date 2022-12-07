@@ -12,7 +12,7 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
         sb.append("#include <iostream>\n #include <fstream>\nusing namespace std; int main(int argc, char *argv[]) {");
         sb.append("int rotations = 0; int i=0;  ofstream output; output.open(\"output.txt\");");
 
-        sb.append("int max = argv[0];");
+        sb.append("int max = atoi(argv[0]);\n");
         sb.append(visitInstruction_general(ctx.instruction_general()));
 
         sb.append("output.close();return 0;}");
@@ -186,7 +186,8 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
         sb.append(visitLogic_condition(ctx.logic_condition()));
         sb.append(ctx.PARENT_L() + "\n");
         sb.append(visitInstruction_general(ctx.instruction_general()));
-        sb.append("\n if(rotatitons>max)break;");
+        sb.append("if(rotations>max)break;");
+        sb.append("rotations++;");
         sb.append(ctx.PARENT_R() + "\n");
 
         return sb.toString();
@@ -209,6 +210,7 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
             sb.append(visitWriteOrOut(ctx.writeOrOut()));
         }
 
+        sb.append("rotations++;");
         return sb.toString();
 
     }
@@ -232,10 +234,10 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
             sb.append(ctx.EQUAL());
             sb.append(visitMath_expr(ctx.math_expr()));
         } else if (ctx.READ_OR_IN() != null) {
-            sb.append("if(++i>=argc){output<<\"ERROR\"<<endl;output.close();return 0;");
+            sb.append("if(++i>=argc){output<<\"ERROR\"<<endl;output.close();return 0;}");
             sb.append(ctx.IDENTIFIER());
             sb.append(ctx.EQUAL());
-            sb.append("argv[i]");
+            sb.append("atoi(argv[i])");
         }
 
         return sb.toString();

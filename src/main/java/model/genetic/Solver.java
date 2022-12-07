@@ -41,7 +41,7 @@ public class Solver {
 
     public void solve() {
         evaluate();
-        saveAndCompile(programs.get(0), " 0 0 0 0 0 0 0 0 ");
+        saveAndCompile(programs.get(0), " 100 0 0 0 0 0 0 0 ");
     }
 
     public void evaluate() {
@@ -132,20 +132,20 @@ public class Solver {
 //            System.out.println(str);
 //            System.out.println("\n ------- program txt in Cpp end -------\n");
 
-            try (PrintWriter out = new PrintWriter("/Users/bartosz/IdeaProjects/TinyGP/program.cpp")) {
+            try (PrintWriter out = new PrintWriter("/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp")) {
                 out.println(str);
             }catch (Exception e){
                 e.printStackTrace();
             }
 
             ProcessBuilder build =
-                    new ProcessBuilder("g++", "/Users/bartosz/IdeaProjects/TinyGP/program.cpp");
+                    new ProcessBuilder("g++", "/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp");
 
             // create the process
             Process process = build.start();
             process.waitFor();
             ProcessBuilder build2 =
-                    new ProcessBuilder("/Users/bartosz/IdeaProjects/TinyGP/a.out");
+                    new ProcessBuilder("/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/a.out");
 
             // create the process
             Process process2 = build2.start();

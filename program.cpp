@@ -1,29 +1,21 @@
 #include <iostream>
  #include <fstream>
-using namespace std; int main(int argc, char *argv[]) {int x1;int rotations = 0; int i=0;  ofstream output; output.open("output.txt");int max = argv[0];if(1237530763){
-while(1386120450 >= 565043292 && -804850432 == 2135000505 ){
-
- if(rotatitons>max)break;}
-}
-while(547844800){
-if(++i>=argc){output<<"ERROR"<<endl;output.close();return 0;x1=argv[i];
-while(600202643|| -x1 < 265027879 ){
-while(-x1 >= x1 ){
-
- if(rotatitons>max)break;}
-
- if(rotatitons>max)break;}
-output<< 1238202197<< endl;while(-1879721042 > 1139677151 || 1038972687 == 1266683167 ){
-
- if(rotatitons>max)break;}
-while(-x1&& -992356802|| x1&& 621489970 == -1468044567 || x1 != -623086991 && x1 == x1 ){
-if(-328570497 == x1 && -x1){
-}
-
- if(rotatitons>max)break;}
-while(x1 >= -1661415738 || x1 < 344414778 ){
-
- if(rotatitons>max)break;}
-
- if(rotatitons>max)break;}
-output.close();return 0;}
+using namespace std; int main(int argc, char *argv[]) {int x1, x2;int rotations = 0; int i=0;  ofstream output; output.open("output.txt");int max = atoi(argv[0]);
+x1=896903972 - ( 259322351 ) ;
+rotations++;while(1084333365&& -347661781 > -1133161651 ){
+if(x1){
+if(++i>=argc){output<<"ERROR"<<endl;output.close();return 0;}x2=atoi(argv[i]);
+rotations++;while(x2 >= 1553456995 || x1|| 1934110969 < -237109337 ){
+while(723942953){
+if(++i>=argc){output<<"ERROR"<<endl;output.close();return 0;}x1=atoi(argv[i]);
+rotations++;while(-515764601 > x1 ){
+if(rotations>max)break;rotations++;}
+rotations++;if(rotations>max)break;rotations++;}
+rotations++;if(rotations>max)break;rotations++;}
+rotations++;while(x1 <= -971519009 || 1426375900|| -2012464394&& -x1 < x2 ){
+if(rotations>max)break;rotations++;}
+rotations++;output<< 1954073382<< endl;rotations++;while(x2&& -1360951782 <= 1186888019 ){
+if(rotations>max)break;rotations++;}
+rotations++;}
+rotations++;if(rotations>max)break;rotations++;}
+rotations++;output.close();return 0;}
