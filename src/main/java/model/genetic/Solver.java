@@ -98,36 +98,39 @@ public class Solver {
     private void saveAndCompile(Program program, String input)  {
         try{
 
-            String program_txt = program.getTreeProgTxt();
+//            String program_txt = program.getTreeProgTxt();
+//
+//            //string to charsteam
+//            Stream<Character> charStream = program_txt.chars().mapToObj(c -> (char) c);
+//
+//
+//            CharStream charStream1 = CharStreams.fromString(program_txt);
+//            BobaroLexer lexer = new BobaroLexer(charStream1);
+//
+//            CommonTokenStream tokens = new CommonTokenStream(lexer);
+//            BobaroParser parser = new BobaroParser(tokens);
+//
+//            String str = new BobaroVisitor().visit(parser.program());
+//            System.out.println(str);
+//
+//            try (PrintWriter out = new PrintWriter("/Users/bartosz/IdeaProjects/TinyGP/program.cpp")) {
+//                out.println(str);
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
 
-            //string to charsteam
-            Stream<Character> charStream = program_txt.chars().mapToObj(c -> (char) c);
-
-
-            CharStream charStream1 = CharStreams.fromString(program_txt);
-            BobaroLexer lexer = new BobaroLexer(charStream1);
-
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            BobaroParser parser = new BobaroParser(tokens);
-
-            String str = new BobaroVisitor().visit(parser.program());
-            System.out.println(str);
-
-            try (PrintWriter out = new PrintWriter("/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp")) {
-                out.println(str);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            List<String> commands = Arrays.asList(
-                    "g++ /Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp\n",
-                    "./Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/a.out " + input + "\n");
+            ProcessBuilder build =
+                    new ProcessBuilder("g++", "/Users/bartosz/IdeaProjects/TinyGP/program.cpp");
 
             // create the process
-            ProcessBuilder build = new ProcessBuilder(commands);
             Process process = build.start();
             process.waitFor();
+            ProcessBuilder build2 =
+                    new ProcessBuilder("/Users/bartosz/IdeaProjects/TinyGP/a.out");
 
+            // create the process
+            Process process2 = build2.start();
+            process2.waitFor();
             }catch (Exception e){
             e.printStackTrace();
         }
