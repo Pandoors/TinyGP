@@ -157,10 +157,6 @@ public class Solver {
             }catch (Exception e){
             e.printStackTrace();
         }
-
-
-
-
     }
 
     private void printEpoch(){

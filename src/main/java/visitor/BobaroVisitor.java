@@ -35,6 +35,7 @@ public interface BobaroVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNum_val(BobaroParser.Num_valContext ctx);
 	/**
+
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */

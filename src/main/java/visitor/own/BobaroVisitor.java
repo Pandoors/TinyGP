@@ -163,15 +163,15 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
             for (TerminalNode tn : ctx.EQUAL()) {
                 sb.append(tn);
             }
-        } else if (ctx.NOT_EQUAL() != null) {
+        }  if (ctx.NOT_EQUAL() != null) {
             sb.append("!=");
-        } else if (ctx.GREATER() != null) {
+        }  if (ctx.GREATER() != null) {
             sb.append(">");
-        } else if (ctx.LESS() != null) {
+        }  if (ctx.LESS() != null) {
             sb.append("<");
-        } else if (ctx.GREATER_EQUAL() != null) {
+        }  if (ctx.GREATER_EQUAL() != null) {
             sb.append(">=");
-        } else if (ctx.LESS_EQUAL() != null) {
+        }  if (ctx.LESS_EQUAL() != null) {
             sb.append("<=");
         }
 
