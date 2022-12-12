@@ -12,9 +12,7 @@ import visitor.BobaroLexer;
 import visitor.BobaroParser;
 import visitor.own.BobaroVisitor;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,9 +39,16 @@ public class Solver {
 
     public void solve() {
         evaluate();
-        saveAndCompile(programs.get(0), " 100 0 0 0 0 0 0 0 ");
+        for(Program program: programs){
+            saveAndCompile(program, " 100 0 0 0 0 0 0 0");
+            fitnessFunction(" 100 0 0 0 0 0 0 0", program, null);
+        }
     }
 
+    public void test_solve(){
+        evaluate();
+        saveAndCompile(programs.get(0), " 100 0 0 0 0 0 0 0");
+    }
     public void evaluate() {
         // tournament -> crossover2 best -> negative tournament -> mutation
         switch (new Random().nextInt(2)) {
@@ -93,7 +98,35 @@ public class Solver {
         for (Program program : this.programs) {
             ;
         }
+    }
 
+    private List<String> readOutput(){
+        List<String> output = new ArrayList<>();
+
+        File file = new File("/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/output.txt");
+        try {
+            String st;
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            while((st=br.readLine()) != null){
+                output.add(st);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return output;
+
+    }
+
+    private int fitnessFunction(String input, Program program, List<String> expected){
+        saveAndCompile(program, input);
+        List<String> output =  readOutput();
+
+        int score = 0;
+        score += (ExamplesEvaluator.checkIfOuputLenEqExp(output, expected)) ? 1 : 0;
+        score += (ExamplesEvaluator.checkIfAtLeastOneOne(output)) ? 1 : 0;
+
+        return score;
     }
 
     private void saveAndCompile(Program program, String input)  {

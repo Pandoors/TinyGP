@@ -12,7 +12,7 @@ public class GpRunner {
         Solver solver = null;
 
         solver = new Solver();
-        solver.solve();
+        solver.test_solve();
 
 
     }
