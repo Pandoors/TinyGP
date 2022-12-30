@@ -1,12 +1,10 @@
 package model;
 
-import lombok.Setter;
 import model.baseNodes.*;
 import model.tokenNode.TokenNode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class Program extends Node {
@@ -14,6 +12,7 @@ public class Program extends Node {
     protected List<TokenNode> variables;
     private Double evaluateResult;
     private int maxReachedDepth;
+    private int avgFitness;
 
     public void setMaxReachedDepth(int maxReachedDepth) {
         this.maxReachedDepth = maxReachedDepth;
@@ -108,6 +107,14 @@ public class Program extends Node {
 
     public void setEvaluateResult(Double evaluateResult) {
         this.evaluateResult = evaluateResult;
+    }
+
+    public int getAvgFitness() {
+        return avgFitness;
+    }
+
+    public void setAvgFitness(int avgFitness) {
+        this.avgFitness = avgFitness;
     }
 }
 

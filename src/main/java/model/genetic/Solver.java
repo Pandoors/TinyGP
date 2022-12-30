@@ -24,12 +24,14 @@ import java.util.stream.Stream;
 
 public class Solver {
     private int epoch=0;
-    private final Integer eps = 1;
+    private final int epochs = 1000;
     private List<Program> programs = new ArrayList<>();
+    private Program sigmaProgram;
+    private int avgFitnessInEpoch;
+    private String path;
 
-
-
-    public Solver() {
+    public Solver(String path) {
+        this.path = path;
         int reachedFitness = 0;
 
         for (int i : new IntegerSequence.Range(0, 100, 1)) {
@@ -40,8 +42,18 @@ public class Solver {
     }
 
     public void solve() {
-        evaluate();
-        saveAndCompile(programs.get(0), " 100 0 0 0 0 0 0 0 ");
+
+//        saveAndCompile(programs.get(0), " 100 0 0 0 0 0 0 0 ");
+
+        for (int i : new IntegerSequence.Range(1, epochs, 1)) {
+            epoch = i;
+            evaluate();
+
+
+            printEpoch();
+        }
+
+
     }
 
     public void evaluate() {
@@ -51,11 +63,11 @@ public class Solver {
                 mutation();
                 break;
             case 1:
+                // cross
                 List<Program> tournamentResult = tournament(2);
                 Program program = Operations.cross(tournamentResult.get(0), tournamentResult.get(1));
                 for (int i = 0; i < negative_tournament(1).size(); i++) {
                     programs.set(i, program);
-
                 }
 
         }
@@ -88,13 +100,12 @@ public class Solver {
         return new Random().nextInt(programs.size());
     }
 
-    private void calculateEvaluation() {
 
-        for (Program program : this.programs) {
-            ;
-        }
-
+    private int fitness(Program program){
+        //todo
+        return 0;
     }
+
 
     private void saveAndCompile(Program program, String input)  {
         try{
@@ -132,20 +143,20 @@ public class Solver {
 //            System.out.println(str);
 //            System.out.println("\n ------- program txt in Cpp end -------\n");
 
-            try (PrintWriter out = new PrintWriter("/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp")) {
+            try (PrintWriter out = new PrintWriter("/Users/bartosz/IdeaProjects/TinyGP/program.cpp")) {
                 out.println(str);
             }catch (Exception e){
                 e.printStackTrace();
             }
 
             ProcessBuilder build =
-                    new ProcessBuilder("g++", "/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp");
+                    new ProcessBuilder("g++", "/Users/bartosz/IdeaProjects/TinyGP/program.cpp");
 
             // create the process
             Process process = build.start();
             process.waitFor();
             ProcessBuilder build2 =
-                    new ProcessBuilder("/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/a.out");
+                    new ProcessBuilder("/Users/bartosz/IdeaProjects/TinyGP/a.out");
 
             // create the process
             Process process2 = build2.start();
@@ -156,6 +167,6 @@ public class Solver {
     }
 
     private void printEpoch(){
-        System.out.println("Epoch: " + epoch++ + "score: ");
+        System.out.println("Epoch: " + epoch + "score: ");
     }
 }
