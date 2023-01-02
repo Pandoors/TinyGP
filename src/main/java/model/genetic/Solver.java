@@ -28,7 +28,7 @@ public class Solver {
     private double reachedFitness;
     public Solver(String path) {
         this.path = path;
-         this.reachedFitness = 0;
+        this.reachedFitness = 0;
 
         for (int i : new IntegerSequence.Range(0, 100, 1)) {
             programs.add(new Program(false));
@@ -65,11 +65,11 @@ public class Solver {
         // tournament -> crossover2 best -> negative tournament -> mutation
         switch (new Random().nextInt(2)) {
             case 0:
-               Program new_mutated = mutation(indiv);
-               new_mutated.setReachedFitness(fitness(new_mutated));
-               this.reachedFitness = Math.max(new_mutated.getReachedFitness(), this.reachedFitness);
-               this.programs.add(new_mutated);
-               break;
+                Program new_mutated = mutation(indiv);
+                new_mutated.setReachedFitness(fitness(new_mutated));
+                this.reachedFitness = Math.max(new_mutated.getReachedFitness(), this.reachedFitness);
+                this.programs.add(new_mutated);
+                break;
             case 1:
                 Program child = cross(indiv, tournament());
                 child.setReachedFitness(fitness(child));
@@ -276,7 +276,7 @@ public class Solver {
             // create the process
             Process process2 = build2.start();
             process2.waitFor();
-            }catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
