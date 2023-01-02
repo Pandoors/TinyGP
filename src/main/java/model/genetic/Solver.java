@@ -144,12 +144,12 @@ public class Solver {
 
     public double gradeOccurancesInFile(List<Integer> output) {
         int count = 0;
-        List<Integer> programOutputs = getProgramOutputs();
-        for (Integer element : output) {
-            if (programOutputs.contains(element)) {
-                count++;
-            }
-        }
+//        List<Integer> programOutputs = getProgramOutputs();
+//        for (Integer element : output) {
+//            if (programOutputs.contains(element)) {
+//                count++;
+//            }
+//        }
         return count;
     };
 
@@ -310,7 +310,7 @@ public class Solver {
     }
 
     private void printEpoch(){
-        System.out.println("Epoch: " + epoch + "score: ");
+        System.out.println("Epoch: " + epoch + "score: " + reachedFitness);
     }
     private void printEpochStarted(){
         System.out.println("Epoch: " + epoch + " just started.");
