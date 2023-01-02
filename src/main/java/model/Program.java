@@ -12,7 +12,7 @@ public class Program extends Node {
     protected List<TokenNode> variables;
     private Double evaluateResult;
     private int maxReachedDepth;
-    private int avgFitness;
+    private double reachedFitness;
 
     public void setMaxReachedDepth(int maxReachedDepth) {
         this.maxReachedDepth = maxReachedDepth;
@@ -109,12 +109,12 @@ public class Program extends Node {
         this.evaluateResult = evaluateResult;
     }
 
-    public int getAvgFitness() {
-        return avgFitness;
+    public double getReachedFitness() {
+        return reachedFitness;
     }
 
-    public void setAvgFitness(int avgFitness) {
-        this.avgFitness = avgFitness;
+    public void setReachedFitness(double avgFitness) {
+        this.reachedFitness = avgFitness;
     }
 }
 

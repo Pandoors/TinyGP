@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
 public class Operations {
 
 
-    public static Node mutation(Node node) {
+    public static Program mutation(Node node) {
 
-        System.out.println("\n---------------------------------------BEFORE-MUTATION----------------------------------------\n");
-        node.getTreeRootNode().print();
-        System.out.println("\n---------------------------------------BEFORE-MUTATION-END----------------------------------------\n");
+//        System.out.println("\n---------------------------------------BEFORE-MUTATION----------------------------------------\n");
+//        node.getTreeRootNode().print();
+//        System.out.println("\n---------------------------------------BEFORE-MUTATION-END----------------------------------------\n");
 
 
         int randomInt = new Random().nextInt(node.getMaxDepth()/2);
@@ -30,9 +30,9 @@ public class Operations {
         node.getChildren().clear();
         node.getTreeRootNode().setMaxReachedDepth(0);
         node.generateRandomChildren();
-        System.out.println("\n---------------------------------------MUTATION----------------------------------------\n");
-        node.getTreeRootNode().print();
-        System.out.println("\n---------------------------------------MUTATION-END----------------------------------------\n");
+//        System.out.println("\n---------------------------------------MUTATION----------------------------------------\n");
+//        node.getTreeRootNode().print();
+//        System.out.println("\n---------------------------------------MUTATION-END----------------------------------------\n");
 
         return node.getTreeRootNode();
     }
@@ -63,6 +63,41 @@ public class Operations {
             return null;
         }
 
+//        System.out.println("\n---------------------------------------CROSS P1----------------------------------------\n");
+//        program1.getTreeRootNode().print();
+//        System.out.println("\n---------------------------------------CROSS P1 END----------------------------------------\n");
+//        System.out.println("\n---------------------------------------CROSS P2----------------------------------------\n");
+//        program2.getTreeRootNode().print();
+//        System.out.println("\n---------------------------------------CROSS P2 END----------------------------------------\n");
+
+
+
+        Random random = new Random();
+        int r_1 = random.nextInt(nodeList1.size());
+        int r_2 = random.nextInt(nodeList2.size());
+
+        Node p1 = nodeList1.get(r_1);
+        Node p2 = nodeList2.get(r_2);
+        p2.setChildren(new ArrayList<>());
+        p2.setChildren(p1.getChildren());
+
+//        System.out.println("\n---------------------------------------CROSS-RESULT----------------------------------------\n");
+//        p2.getTreeRootNode().print();
+//        System.out.println("\n---------------------------------------CROSS-RESULT-END----------------------------------------\n");
+
+        return p2.getTreeRootNode();
+    }
+
+    public static Program crossChanged(Program program1, Program program2) {
+        List<Node> nodeList1 = Operations.getAllNodes(program1);
+        List<Node> nodeList2 = Operations.getAllNodes(program2);
+
+
+
+        if (nodeList1.isEmpty() || nodeList2.isEmpty()) {
+            return null;
+        }
+
         System.out.println("\n---------------------------------------CROSS P1----------------------------------------\n");
         program1.getTreeRootNode().print();
         System.out.println("\n---------------------------------------CROSS P1 END----------------------------------------\n");
@@ -78,6 +113,15 @@ public class Operations {
 
         Node p1 = nodeList1.get(r_1);
         Node p2 = nodeList2.get(r_2);
+        int c = 0;
+        while(!Objects.equals(p1.getName(), p2.getName())){
+            r_1 = random.nextInt(nodeList1.size());
+            r_2 = random.nextInt(nodeList2.size());
+
+            p1 = nodeList1.get(r_1);
+            p2 = nodeList2.get(r_2);
+        }
+
         p2.setChildren(new ArrayList<>());
         p2.setChildren(p1.getChildren());
 
@@ -87,7 +131,6 @@ public class Operations {
 
         return p2.getTreeRootNode();
     }
-
 
     public static List<TokenNode> getVarsInBranch(Node node) {
         List<TokenNode> branchVars = new ArrayList<>();

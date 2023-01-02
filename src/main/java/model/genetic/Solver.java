@@ -12,13 +12,9 @@ import visitor.BobaroLexer;
 import visitor.BobaroParser;
 import visitor.own.BobaroVisitor;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -29,10 +25,10 @@ public class Solver {
     private Program sigmaProgram;
     private int avgFitnessInEpoch;
     private String path;
-
+    private double reachedFitness;
     public Solver(String path) {
         this.path = path;
-        int reachedFitness = 0;
+         this.reachedFitness = 0;
 
         for (int i : new IntegerSequence.Range(0, 100, 1)) {
             programs.add(new Program(false));
@@ -44,62 +40,181 @@ public class Solver {
     public void solve() {
 
 //        saveAndCompile(programs.get(0), " 100 0 0 0 0 0 0 0 ");
-
+        int size = programs.size();
         for (int i : new IntegerSequence.Range(1, epochs, 1)) {
             epoch = i;
-            evaluate();
-
-
+//            if (fBestPop > -1e-5) { todo
+//                System.out.print("PROBLEM SOLVED\n");
+//                System.exit(0);
+//            }
+//            for (Program indiv : programs) {
+//                evaluate(indiv);
+//
+//            }
+            printEpochStarted();
+            for (int j=0; j < size; j++){
+                evaluate(programs.get(j));
+            }
             printEpoch();
         }
 
 
     }
 
-    public void evaluate() {
+    public void evaluate(Program indiv) {
         // tournament -> crossover2 best -> negative tournament -> mutation
         switch (new Random().nextInt(2)) {
             case 0:
-                mutation();
-                break;
+               Program new_mutated = mutation(indiv);
+               new_mutated.setReachedFitness(fitness(new_mutated));
+               this.reachedFitness = Math.max(new_mutated.getReachedFitness(), this.reachedFitness);
+               this.programs.add(new_mutated);
+               break;
             case 1:
-                // cross
-                List<Program> tournamentResult = tournament(2);
-                Program program = Operations.cross(tournamentResult.get(0), tournamentResult.get(1));
-                for (int i = 0; i < negative_tournament(1).size(); i++) {
-                    programs.set(i, program);
-                }
+                Program child = cross(indiv, tournament());
+                child.setReachedFitness(fitness(child));
+                this.reachedFitness = Math.max(child.getReachedFitness(), this.reachedFitness);
+                this.programs.add(child);
+                break;
+        }
+        negativeTournament();
+    }
 
+    private Program cross(Program parent1, Program parent2){
+        return Operations.cross(parent1, parent2);
+    }
+
+    public Program tournament() {
+        for(Program program: programs){
+            if(program.getReachedFitness()==reachedFitness)
+                return program;
+        }
+        return programs.get(0); // i tak się to nigdy nie wykona ale wrzuciłem to żeby się nie darło
+    }
+
+    public void negativeTournament () {
+        double worstFitness = 0;
+
+        Integer index = null;
+        for (int i = 0; i < this.programs.size(); i++) {
+            if (programs.get(i).getReachedFitness() < worstFitness) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index != null) {
+            this.programs.remove(index.intValue());
+            System.out.println("Usunieto w indeksie: " + index);
+        }
+
+
+    }
+
+    public Program mutation(Program a) {
+        return Operations.mutation(a);
+    }
+
+    public List<Integer> getProgramOutputs(){
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(this.outputFilename));
+            String line;
+            String outputs = "";
+            while ((line = br.readLine()) != null) {
+                outputs = outputs = outputs + " " + line;
+            }
+            return convert2List(outputs);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null; // to nie powinno się nigdy wykona
+    }
+
+    public boolean isOutputEmpty(){
+        File file = new File(this.outputFilename);
+        if (file.length() == 0) {
+            System.out.println("The file is empty");
+            return true;
+        } else {
+            System.out.println("The file is not empty");
+            return false;
         }
     }
 
-    public List<Program> tournament(int a) {
-        List<Program> winners = new ArrayList<>();
-        for (int i = 0; i < a; i++) {
-            winners.add(programs.get(new Random().nextInt(programs.size())));
-
+    public double gradeOccurancesInFile(List<Integer> output) {
+        int count = 0;
+        List<Integer> programOutputs = getProgramOutputs();
+        for (Integer element : output) {
+            if (programOutputs.contains(element)) {
+                count++;
+            }
         }
-        return winners;
-    }
+        return count;
+    };
 
-    public List<Integer> negative_tournament(int a) {
-        List<Integer> winners = new ArrayList<>();
-        for (int i = 0; i < a; i++) {
-            winners.add(i);
+    public double gradeDistanceBetweenOutputs(List<Integer> output){
+        double grade = 0;
+        List<Integer> programOutputs = getProgramOutputs();
+        for(int i=0; i<output.size(); i++){
+            if(output.get(i)==programOutputs.get(i))
+                grade = 1_000_000;
+            else
+                grade = grade + (1/Math.abs(output.get(i)-programOutputs.get(i)));
         }
-        return winners;
+        return grade/output.size();
     }
 
-    public void mutation() {
-        int a = run();
-        this.programs.set(a, (Program) Operations.mutation(programs.get(a)));
+    public boolean doesProgramRuns(){
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(this.outputFilename));
+            String line;
+            while ((line = br.readLine()) != null) {
+                if(line.contains("ERROR")) return false;
+            }
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+    public boolean doesProgramHaveExpectedOutputLength(int outputLength){
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(this.outputFilename));
+            String line;
+            int i= 0;
+            while ((line = br.readLine()) != null) {
+                i++;
+            }
+            return outputLength==i;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
-    private int run() {
-        return new Random().nextInt(programs.size());
+    private double fittnes4Case(List<Integer> outputs, int checkOutputLength){
+        //checking if the program returns error
+        if(!doesProgramRuns()||isOutputEmpty()) return -1;
+        if(checkOutputLength>0 ){
+            //checking if the number of length of outputs matches number of expected outputs
+            if(!doesProgramHaveExpectedOutputLength(outputs.size())) return 0;
+            //read the file and return the sqrt of sum of squares
+            return gradeDistanceBetweenOutputs(outputs);
+        }else {
+            return gradeOccurancesInFile(outputs);
+        }
     }
+    private List<Integer> convert2List(String s){
+        String[] parts = s.split(" ");
 
+        List<String> stringList = Arrays.asList(parts);
+        List<Integer> numbers = stringList.stream().filter(n-> n!= null && !Objects.equals(n, ""))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        return numbers;
+    }
 
     private int fitness(Program program){
         //todo
@@ -168,5 +283,8 @@ public class Solver {
 
     private void printEpoch(){
         System.out.println("Epoch: " + epoch + "score: ");
+    }
+    private void printEpochStarted(){
+        System.out.println("Epoch: " + epoch + " just started.");
     }
 }
