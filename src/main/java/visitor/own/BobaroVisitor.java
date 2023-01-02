@@ -90,8 +90,6 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
             sb.append(visitMath_expr(ctx.math_expr().get(0)));
             sb.append(ctx.BRACKET_R() + " ");
         }
-
-
         return sb.toString();
     }
 
