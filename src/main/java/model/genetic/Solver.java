@@ -22,7 +22,8 @@ public class Solver {
     private int epoch=0;
     private final int epochs = 1000;
     private List<Program> programs = new ArrayList<>();
-    private Program sigmaProgram;
+    private String outputFilename = "/Users/bartosz/IdeaProjects/TinyGP/output.txt";
+    private int sigmaProgramId;
     private int avgFitnessInEpoch;
     private String path;
     private double reachedFitness;
@@ -216,8 +217,35 @@ public class Solver {
         return numbers;
     }
 
-    private int fitness(Program program){
-        //todo
+    private double fitness(Program program){
+        String line;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(this.path))) {
+            String headerLine = br.readLine();
+            List<Integer> numbers = convert2List(headerLine);
+            int rotations = numbers.get(0);
+            int inputs = numbers.get(1);
+            int outputs = numbers.get(2);
+            int test_cases = numbers.get(3);
+            double avg_fitness = 0;
+
+
+            for(int i=0; i<test_cases; i++){
+                //read line and complile program using input and calculate fitness for single case
+                String testCase = br.readLine();
+                List<Integer> n = convert2List(testCase);
+                List<Integer> inputsList = n.subList(0,inputs);
+                List<Integer> outputsList = n.subList(inputs, n.size());
+                inputsList.add(0, rotations);
+                String input = String.join(" ", inputsList.stream().map(Object::toString).collect(Collectors.toList()));
+                saveAndCompile(program, input);
+                avg_fitness+=fittnes4Case( outputsList, outputs);
+            }
+            return avg_fitness/test_cases;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return 0;
     }
 
