@@ -143,15 +143,24 @@ public class Solver {
     }
 
     public double gradeOccurancesInFile(List<Integer> output) {
-        int count = 0;
 //        List<Integer> programOutputs = getProgramOutputs();
+//        int count = 0;x
+//        for(int i= 0; i<output.size(); i++){
+//            for(int j=0; j<programOutputs.size();j++){
+//                count ++;
+//            }
+//        }
+//        return count/output.size();
+//        List<Integer> programOutputs = getProgramOutputs();
+//        if(output != null && !output.isEmpty() && programOutputs != null && !programOutputs.isEmpty()){
 //        for (Integer element : output) {
 //            if (programOutputs.contains(element)) {
 //                count++;
 //            }
-//        }
-        return count;
-    };
+//        }}
+//        return count;
+        return 0.0;
+    }
 
     public double gradeDistanceBetweenOutputs(List<Integer> output){
         double grade = 0;
@@ -200,7 +209,7 @@ public class Solver {
         if(!doesProgramRuns()||isOutputEmpty()) return -1;
         if(checkOutputLength>0 ){
             //checking if the number of length of outputs matches number of expected outputs
-            if(!doesProgramHaveExpectedOutputLength(outputs.size())) return 0;
+            if(!doesProgramHaveExpectedOutputLength(outputs.size())) return 0.0;
             //read the file and return the sqrt of sum of squares
             return gradeDistanceBetweenOutputs(outputs);
         }else {
@@ -235,7 +244,9 @@ public class Solver {
                 String testCase = br.readLine();
                 List<Integer> n = convert2List(testCase);
                 List<Integer> inputsList = n.subList(0,inputs);
-                List<Integer> outputsList = n.subList(inputs, n.size());
+                List<Integer> outputsList = new ArrayList<>();
+
+                outputsList.addAll(n.subList(inputs, n.size()));
                 inputsList.add(0, rotations);
                 String input = String.join(" ", inputsList.stream().map(Object::toString).collect(Collectors.toList()));
                 saveAndCompile(program, input);

@@ -9,7 +9,7 @@ public class GpRunner {
 
     public static void main(String[] args) {
 
-        Solver solver = new Solver("/Users/bartosz/IdeaProjects/TinyGP/src/main/java/inputFiles/test_1a.txt");
+        Solver solver = new Solver("/Users/bartosz/IdeaProjects/TinyGP/src/main/java/inputFiles/test_final_1.txt");
         solver.solve();
 
 
