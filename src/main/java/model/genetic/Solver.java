@@ -22,7 +22,7 @@ public class Solver {
     private int epoch=0;
     private final int epochs = 1000;
     private List<Program> programs = new ArrayList<>();
-    private String outputFilename = "/Users/bartosz/IdeaProjects/TinyGP/output.txt";
+    private String outputFilename = "/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/output.txt";
     private int sigmaProgramId;
     private int avgFitnessInEpoch;
     private String path;
@@ -78,6 +78,7 @@ public class Solver {
                 this.programs.add(child);
                 break;
         }
+//        System.out.println("Best fitness: " + this.reachedFitness);
         negativeTournament();
     }
 
@@ -90,7 +91,7 @@ public class Solver {
             if(program.getReachedFitness()==reachedFitness)
                 return program;
         }
-        return programs.get(0); // i tak się to nigdy nie wykona ale wrzuciłem to żeby się nie darło
+        return programs.get(0); //i tak się to nigdy nie wykona ale wrzuciłem to żeby się nie darło
     }
 
     public void negativeTournament () {
@@ -226,7 +227,7 @@ public class Solver {
         return numbers;
     }
 
-    private double fitness(Program program){
+    private double fitness(Program program){ // TODO: szczerze powiedziawszy to ja bym zrobił, że im mniejszy błąd tym lepszy fitness case?
         String line;
 
         try (BufferedReader br = new BufferedReader(new FileReader(this.path))) {
@@ -297,20 +298,20 @@ public class Solver {
 //            System.out.println(str);
 //            System.out.println("\n ------- program txt in Cpp end -------\n");
 
-            try (PrintWriter out = new PrintWriter("/Users/bartosz/IdeaProjects/TinyGP/program.cpp")) {
+            try (PrintWriter out = new PrintWriter("/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp")) {
                 out.println(str);
             }catch (Exception e){
                 e.printStackTrace();
             }
 
             ProcessBuilder build =
-                    new ProcessBuilder("g++", "/Users/bartosz/IdeaProjects/TinyGP/program.cpp");
+                    new ProcessBuilder("g++", "/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/program.cpp");
 
             // create the process
             Process process = build.start();
             process.waitFor();
             ProcessBuilder build2 =
-                    new ProcessBuilder("/Users/bartosz/IdeaProjects/TinyGP/a.out");
+                    new ProcessBuilder("/Users/mikolajborowicz/Documents/Local/ProgramowanieGenetyczne/TinyGP/a.out");
 
             // create the process
             Process process2 = build2.start();
