@@ -39,7 +39,7 @@ public class NumVal extends Node {
 
         switch (randomInt_1) {
             case 0:
-                this.addChild(new TokenNode(this, "INT_VAL", false, String.valueOf(Math.abs(random.nextInt())), treeRootNode));
+                this.addChild(new TokenNode(this, "INT_VAL", false, String.valueOf(Math.abs(random.nextInt(100))), treeRootNode));
                 break;
             case 1:
                 int randomInt_3 = random.nextInt(this.treeRootNode.getVariables().size());

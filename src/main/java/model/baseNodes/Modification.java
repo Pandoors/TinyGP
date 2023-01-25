@@ -29,7 +29,7 @@ public class Modification extends Node {
         String newVar = null;
         TokenNode tn = null;
         Random random = new Random();
-        if((this.treeRootNode.getVariables() != null && this.treeRootNode.getVariables().isEmpty()) || (random.nextInt(5) >= 1)) {
+        if((this.treeRootNode.getVariables() != null && this.treeRootNode.getVariables().isEmpty()) || (random.nextInt(5) > 2)) {
             int index = this.treeRootNode.getVariables().size() + 1;
             newVar = "x".concat(String.valueOf(index));
             tn = new TokenNode(this, "IDENTIFIER", false, newVar, treeRootNode);

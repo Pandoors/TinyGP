@@ -177,15 +177,15 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
     }
 
     @Override
-    public String visitWhile_loop(BobaroParser.While_loopContext ctx) {
+    public String visitWhile_loop(BobaroParser.While_loopContext ctx) { //TODO: nie powinniśmy whodzić do tej pętli
         StringBuilder sb = new StringBuilder();
 
         sb.append(ctx.WHILE());
         sb.append(visitLogic_condition(ctx.logic_condition()));
         sb.append(ctx.PARENT_L() + "\n");
-        sb.append(visitInstruction_general(ctx.instruction_general()));
         sb.append("if(rotations>max)break;");
         sb.append("rotations++;");
+        sb.append(visitInstruction_general(ctx.instruction_general()));
         sb.append(ctx.PARENT_R() + "\n");
 
         return sb.toString();
@@ -199,7 +199,7 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
 
         if (ctx.modification() != null) {
             sb.append(visitModification(ctx.modification()));
-            sb.append(ctx.SEMICOLON() + "\n");
+            sb.append("\n");
         } else if (ctx.if_statement() != null) {
             sb.append(visitIf_statement(ctx.if_statement()));
         } else if (ctx.while_loop() != null) {
@@ -231,11 +231,20 @@ public class BobaroVisitor extends BobaroBaseVisitor<String> {
             sb.append(ctx.IDENTIFIER());
             sb.append(ctx.EQUAL());
             sb.append(visitMath_expr(ctx.math_expr()));
-        } else if (ctx.READ_OR_IN() != null) {
-            sb.append("if(++i>=argc){output<<\"ERROR\"<<endl;output.close();return 0;}");
+            sb.append(";");
+        } else if (ctx.READ_OR_IN() != null) { // tutaj trzeba wczytywać np do zmiennej 1 TODO: more variables
+            //sb.append("if(++i>=argc){output<<\"ERROR\"<<endl;output.close();return 0;}");
+            sb.append("if(++i>=argc){");
+            sb.append(ctx.IDENTIFIER());
+            sb.append(ctx.EQUAL());
+            sb.append("0;}");
+            sb.append("else{");
             sb.append(ctx.IDENTIFIER());
             sb.append(ctx.EQUAL());
             sb.append("atoi(argv[i])");
+            sb.append(";");
+            sb.append("}");
+
         }
 
         return sb.toString();

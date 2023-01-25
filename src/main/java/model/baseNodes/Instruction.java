@@ -56,15 +56,20 @@ public class Instruction extends Node {
     private void addChildrenWithMaxDepth1(){ // we can choose between writeOrOut | modification SEMICOLON
         // we need to check if we have any variables
 
-            switch (new Random().nextInt(2)) {
-                case 0:
-                    this.addChild(new WriteOrOut(this, "WRITE_OR_OUT", true, this.treeRootNode));
-                    break;
-                case 1:
-                    this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode, false));
-                    this.addChild(new TokenNode(this, "SEMICOLON", false, ";\n", this.treeRootNode));
-                    break;
-            }
+        int randomInt = new Random().nextInt(2);
+        if(this.treeRootNode.getVariables() == null || this.treeRootNode.getVariables().size() < 1){
+            randomInt = 1;
+        }
+
+        switch (randomInt) {
+            case 0:
+                this.addChild(new WriteOrOut(this, "WRITE_OR_OUT", true, this.treeRootNode));
+                break;
+            case 1:
+                this.addChild(new Modification(this, "MODIFICATION", true, treeRootNode, false));
+                this.addChild(new TokenNode(this, "SEMICOLON", false, ";\n", this.treeRootNode));
+                break;
+        }
 
     }
     private void addChildrenWithMaxDepth3(){
