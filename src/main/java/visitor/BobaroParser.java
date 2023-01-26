@@ -1,4 +1,4 @@
-// Generated from /Users/bartosz/IdeaProjects/TinyGP/src/main/java/antlr/Bobaro.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
 package visitor;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
-@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
+@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class BobaroParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.10.1", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.11.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -89,7 +89,7 @@ public class BobaroParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "Bobaro.g4"; }
+	public String getGrammarFileName() { return "java-escape"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -105,6 +105,7 @@ public class BobaroParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ProgramContext extends ParserRuleContext {
 		public Instruction_generalContext instruction_general() {
 			return getRuleContext(Instruction_generalContext.class,0);
@@ -141,6 +142,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class WriteOrOutContext extends ParserRuleContext {
 		public TerminalNode BRACKET_R() { return getToken(BobaroParser.BRACKET_R, 0); }
 		public TerminalNode SEMICOLON() { return getToken(BobaroParser.SEMICOLON, 0); }
@@ -193,6 +195,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Math_symbolContext extends ParserRuleContext {
 		public TerminalNode ADD_() { return getToken(BobaroParser.ADD_, 0); }
 		public TerminalNode SUBTRACT_() { return getToken(BobaroParser.SUBTRACT_, 0); }
@@ -218,7 +221,7 @@ public class BobaroParser extends Parser {
 			{
 			setState(37);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ADD_) | (1L << SUBTRACT_) | (1L << MULTIPLY) | (1L << DIVIDE))) != 0)) ) {
+			if ( !(((_la) & ~0x3f) == 0 && ((1L << _la) & 1966080L) != 0) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -239,6 +242,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Num_valContext extends ParserRuleContext {
 		public TerminalNode INT_VAL() { return getToken(BobaroParser.INT_VAL, 0); }
 		public TerminalNode ADD_() { return getToken(BobaroParser.ADD_, 0); }
@@ -326,6 +330,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Math_exprContext extends ParserRuleContext {
 		public TerminalNode BRACKET_L() { return getToken(BobaroParser.BRACKET_L, 0); }
 		public List<Math_exprContext> math_expr() {
@@ -430,6 +435,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class If_statementContext extends ParserRuleContext {
 		public TerminalNode IF() { return getToken(BobaroParser.IF, 0); }
 		public Logic_conditionContext logic_condition() {
@@ -480,6 +486,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Logic_conditionContext extends ParserRuleContext {
 		public TerminalNode BRACKET_L() { return getToken(BobaroParser.BRACKET_L, 0); }
 		public List<Logic_statementContext> logic_statement() {
@@ -548,6 +555,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ComparisonContext extends ParserRuleContext {
 		public List<Num_valContext> num_val() {
 			return getRuleContexts(Num_valContext.class);
@@ -594,6 +602,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Logic_statementContext extends ParserRuleContext {
 		public ComparisonContext comparison() {
 			return getRuleContext(ComparisonContext.class,0);
@@ -646,6 +655,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Logic_operatorContext extends ParserRuleContext {
 		public TerminalNode OR() { return getToken(BobaroParser.OR, 0); }
 		public TerminalNode AND() { return getToken(BobaroParser.AND, 0); }
@@ -690,6 +700,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ComparatorContext extends ParserRuleContext {
 		public List<TerminalNode> EQUAL() { return getTokens(BobaroParser.EQUAL); }
 		public TerminalNode EQUAL(int i) {
@@ -777,6 +788,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class While_loopContext extends ParserRuleContext {
 		public TerminalNode WHILE() { return getToken(BobaroParser.WHILE, 0); }
 		public Logic_conditionContext logic_condition() {
@@ -827,6 +839,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class InstructionContext extends ParserRuleContext {
 		public ModificationContext modification() {
 			return getRuleContext(ModificationContext.class,0);
@@ -904,6 +917,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Instruction_generalContext extends ParserRuleContext {
 		public List<InstructionContext> instruction() {
 			return getRuleContexts(InstructionContext.class);
@@ -932,7 +946,7 @@ public class BobaroParser extends Parser {
 			setState(120);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << IF) | (1L << WHILE) | (1L << IDENTIFIER))) != 0)) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 289406978L) != 0) {
 				{
 				{
 				setState(117);
@@ -956,6 +970,7 @@ public class BobaroParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ModificationContext extends ParserRuleContext {
 		public TerminalNode IDENTIFIER() { return getToken(BobaroParser.IDENTIFIER, 0); }
 		public TerminalNode EQUAL() { return getToken(BobaroParser.EQUAL, 0); }

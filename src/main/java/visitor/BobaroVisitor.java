@@ -1,4 +1,4 @@
-// Generated from /Users/bartosz/IdeaProjects/TinyGP/src/main/java/antlr/Bobaro.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
 package visitor;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -35,8 +35,7 @@ public interface BobaroVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNum_val(BobaroParser.Num_valContext ctx);
 	/**
-
-	 * @param ctx the parse tree
+	 * * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMath_expr(BobaroParser.Math_exprContext ctx);

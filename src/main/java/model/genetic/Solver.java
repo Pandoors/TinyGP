@@ -27,6 +27,7 @@ public class Solver {
     private int avgFitnessInEpoch;
     private String path;
     private double reachedFitness;
+    private Program programBestEpoch;
     public Solver(String path) {
         this.path = path;
         this.reachedFitness = 0;
@@ -39,10 +40,11 @@ public class Solver {
     }
 
     public void solve() {
-
+        double bestResultFitness = 1000.0;
 //        saveAndCompile(programs.get(0), " 100 0 0 0 0 0 0 0 ");
         int size = programs.size();
         for (int i : new IntegerSequence.Range(1, epochs, 1)) {
+
             epoch = i;
 //            if (fBestPop > -1e-5) { todo
 //                System.out.print("PROBLEM SOLVED\n");
@@ -53,10 +55,17 @@ public class Solver {
 //
 //            }
             printEpochStarted();
+
             for (int j=0; j < size; j++){
                 evaluate(programs.get(j));
+                if (programs.get(j).getReachedFitness() < bestResultFitness){
+                    programBestEpoch = programs.get(j);
+                }
             }
             printEpoch();
+            if(programBestEpoch !=  null) {
+                saveAndCompile(programBestEpoch,"" ,"/Users/bartosz/IdeaProjects/TinyGP/best_program.cpp");
+            }
         }
 
 
@@ -261,7 +270,7 @@ public class Solver {
     }
 
 
-    private void saveAndCompile(Program program, String input)  {
+    private void saveAndCompile(Program program, String input, String path)  {
         try{
             String program_txt = program.getTreeProgTxt();
 //            System.out.println("\n ------- program txt in Bobaro-------\n");
@@ -297,14 +306,14 @@ public class Solver {
 //            System.out.println(str);
 //            System.out.println("\n ------- program txt in Cpp end -------\n");
 
-            try (PrintWriter out = new PrintWriter("/Users/bartosz/IdeaProjects/TinyGP/program.cpp")) {
+            try (PrintWriter out = new PrintWriter(path)) {
                 out.println(str);
             }catch (Exception e){
                 e.printStackTrace();
             }
 
             ProcessBuilder build =
-                    new ProcessBuilder("g++", "/Users/bartosz/IdeaProjects/TinyGP/program.cpp");
+                    new ProcessBuilder("g++", path);
 
             // create the process
             Process process = build.start();

@@ -38,7 +38,7 @@ public class WriteOrOut extends Node {
                 this.addChild(new TokenNode(this, "IDENTIFIER", false, this.treeRootNode.getVariables().get(randomInt_2).getToken(), treeRootNode));
                 break;
             case 1:
-                this.addChild(new TokenNode(this, "INT_VAL", false, String.valueOf(Math.abs(random.nextInt())), treeRootNode));
+                this.addChild(new TokenNode(this, "INT_VAL", false, String.valueOf(Math.abs(random.nextInt(100))), treeRootNode));
                 break;
         }
 

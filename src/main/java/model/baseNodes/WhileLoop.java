@@ -31,6 +31,7 @@ public class WhileLoop extends Node {
 
         Random random = new Random();
         int randomInt = random.nextInt(2);
+        boolean isEmpty = true;
 
         while (randomInt != 0) {
             this.addChild(new Instruction(this, "INSTRUCTION", true, treeRootNode));

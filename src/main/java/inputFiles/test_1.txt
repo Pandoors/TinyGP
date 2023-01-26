@@ -1,2 +1,5 @@
-100{obroty} {liczba_wejsc} {liczba wyjsc} {liczba_test_caseow}
+{obroty} {liczba_wejsc} {liczba wyjsc} {liczba_test_caseow}
+
+
+
 

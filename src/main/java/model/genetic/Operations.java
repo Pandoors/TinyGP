@@ -30,9 +30,6 @@ public class Operations {
         node.getChildren().clear();
         node.getTreeRootNode().setMaxReachedDepth(0);
         node.generateRandomChildren();
-//        System.out.println("\n---------------------------------------MUTATION----------------------------------------\n");
-//        node.getTreeRootNode().print();
-//        System.out.println("\n---------------------------------------MUTATION-END----------------------------------------\n");
 
         return node.getTreeRootNode();
     }
@@ -63,15 +60,6 @@ public class Operations {
             return null;
         }
 
-//        System.out.println("\n---------------------------------------CROSS P1----------------------------------------\n");
-//        program1.getTreeRootNode().print();
-//        System.out.println("\n---------------------------------------CROSS P1 END----------------------------------------\n");
-//        System.out.println("\n---------------------------------------CROSS P2----------------------------------------\n");
-//        program2.getTreeRootNode().print();
-//        System.out.println("\n---------------------------------------CROSS P2 END----------------------------------------\n");
-
-
-
         Random random = new Random();
         int r_1 = random.nextInt(nodeList1.size());
         int r_2 = random.nextInt(nodeList2.size());
@@ -80,10 +68,6 @@ public class Operations {
         Node p2 = nodeList2.get(r_2);
         p2.setChildren(new ArrayList<>());
         p2.setChildren(p1.getChildren());
-
-//        System.out.println("\n---------------------------------------CROSS-RESULT----------------------------------------\n");
-//        p2.getTreeRootNode().print();
-//        System.out.println("\n---------------------------------------CROSS-RESULT-END----------------------------------------\n");
 
         return p2.getTreeRootNode();
     }

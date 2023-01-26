@@ -1,7 +1,6 @@
 grammar Bobaro;
 
-INT_VAL: [1-9][0-9]*;
-//STRING_VAL: '"' ('\\' ["\\] | ~["\\\r\n])* '"' ;
+INT_VAL: [0-9][0-9]*;
 OR: '||';
 AND: '&&';
 EQUAL: '=';

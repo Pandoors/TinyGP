@@ -1,4 +1,4 @@
-// Generated from /Users/bartosz/IdeaProjects/TinyGP/src/main/java/antlr/Bobaro.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
 package visitor;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * @param <T> The return type of the visit operation. Use {@link Void} for
  * operations with no return type.
  */
+@SuppressWarnings("CheckReturnValue")
 public class BobaroBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements BobaroVisitor<T> {
 	/**
 	 * {@inheritDoc}
